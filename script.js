@@ -53,29 +53,26 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', checkFade);
 
     // Accordion for FAQ
-    const accordionHeaders = document.querySelectorAll('.accordion-header');
+const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-    accordionHeaders.forEach(header => {
-        header.addEventListener('click', () => {
-            header.classList.toggle('active');
-            const content = header.nextElementSibling;
+accordionHeaders.forEach(header => {
+    header.addEventListener('click', () => {
+        header.classList.toggle('active');
+        const content = header.nextElementSibling;
+        
+        if (header.classList.contains('active')) {
+            // 先にpaddingをつける
+            content.style.padding = "1.5rem";
             
-            if (header.classList.contains('active')) {
-                content.style.maxHeight = content.scrollHeight + "px";
-                content.style.padding = "1.5rem";
-            } else {
-                content.style.maxHeight = null;
-                content.style.padding = "0 1.5rem";
-            }
-        });
-    });
+            // 一瞬待ってから高さ計算（←これがミソ）
+            requestAnimationFrame(() => {
+                content.style.maxHeight = content.scrollHeight +40 + "px";
+            });
 
-    // Simple Form Submission Prevent
-    const submitBtn = document.querySelector('.submit-btn');
-    if (submitBtn) {
-        submitBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            alert('お問い合わせを受け付けました。');
-        });
-    }
+        } else {
+            content.style.maxHeight = null;
+            content.style.padding = "0 1.5rem";
+        }
+    });
+});
 });
