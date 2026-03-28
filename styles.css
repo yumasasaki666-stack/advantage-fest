@@ -326,6 +326,7 @@ h1, h2, h3, h4 {
     background-color: var(--bg-alt);
 }
 
+/* 
 .section::before {
     content: '';
     position: absolute;
@@ -336,6 +337,7 @@ h1, h2, h3, h4 {
     background: var(--primary-color);
     box-shadow: 0 0 15px var(--primary-glow);
 }
+削除 or コメントアウト */
 
 /* ABOUT */
 .about-content {
@@ -720,4 +722,16 @@ h1, h2, h3, h4 {
     .map-embed iframe {
         min-height: 0;
     }
+}
+
+
+.faq-cta {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.faq-cta-text {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-muted);
 }
