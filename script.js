@@ -75,4 +75,44 @@ accordionHeaders.forEach(header => {
         }
     });
 });
+
+    // Event Modal
+    const eventCards = document.querySelectorAll('#event .card');
+    const modal = document.getElementById('event-modal');
+    const modalOverlay = document.getElementById('modal-overlay');
+    const modalClose = document.getElementById('modal-close');
+    const modalTitle = document.getElementById('modal-title');
+    const modalBody = document.getElementById('modal-body');
+
+    if (eventCards.length > 0 && modal) {
+        eventCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const title = card.querySelector('.card-title').textContent;
+                const desc = card.querySelector('.card-desc').textContent;
+                
+                modalTitle.textContent = title;
+                modalBody.innerHTML = `
+                    <p>${desc}</p>
+                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.05); border-left: 3px solid var(--primary-color);">
+                        <p style="color: #ddd; font-size: 0.95rem;">
+                            【適当な詳細情報】<br>
+                            ここにイベントの詳しいルールや参加条件などの文章が入ります。現在は適当なダミーテキストとして表示されています。<br><br>
+                            詳細なタイムテーブルや持ち物についても、後日追記される予定です。
+                        </p>
+                    </div>
+                `;
+                
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeModal = () => {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+        };
+
+        modalClose.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', closeModal);
+    }
 });
