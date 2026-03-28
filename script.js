@@ -102,7 +102,7 @@ accordionHeaders.forEach(header => {
                                 <span style="font-size: 0.85em; color: var(--text-muted);">※3人揃ったら対戦スタート</span>
                             </li>
                             <li>ヒントカードをもとにデッキ内容を推測<br>
-                                <img src="hintcard.png" alt="ヒントカードのサンプル" class="hint-image" title="タップして拡大">
+                                <img src="hintcard.png" alt="ヒントカードのサンプル" class="hint-image">
                             </li>
                             <li>レンタルデッキから1つ選んで参加</li>
                             <li>1勝ごとにデッキ交換が可能<br>
@@ -143,14 +143,6 @@ accordionHeaders.forEach(header => {
                 modalBody.innerHTML = contentHTML;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
-
-                const hintImages = modalBody.querySelectorAll('.hint-image');
-                hintImages.forEach(img => {
-                    img.addEventListener('click', (e) => {
-                        e.stopPropagation();
-                        img.classList.toggle('zoomed');
-                    });
-                });
             });
         });
 
