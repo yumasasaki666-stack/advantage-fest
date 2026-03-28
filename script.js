@@ -91,19 +91,66 @@ accordionHeaders.forEach(header => {
                 const desc = card.querySelector('.card-desc').textContent;
                 
                 modalTitle.textContent = title;
-                modalBody.innerHTML = `
-                    <p>${desc}</p>
-                    <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.05); border-left: 3px solid var(--primary-color);">
-                        <p style="color: #ddd; font-size: 0.95rem;">
-                            【適当な詳細情報】<br>
-                            ここにイベントの詳しいルールや参加条件などの文章が入ります。現在は適当なダミーテキストとして表示されています。<br><br>
-                            詳細なタイムテーブルや持ち物についても、後日追記される予定です。
-                        </p>
-                    </div>
-                `;
                 
+                let contentHTML = `<p>${desc}</p>`;
+
+                if (title === "ポケカバトルファクトリー") {
+                    contentHTML += `
+                        <h4 class="modal-section-title">あそびかた</h4>
+                        <ul class="modal-list">
+                            <li>3人1組のフライト式で進行（総当たり3回対戦）<br>
+                                <span style="font-size: 0.85em; color: var(--text-muted);">※3人揃ったら対戦スタート</span>
+                            </li>
+                            <li>ヒントカードをもとにデッキ内容を推測<br>
+                                <img src="hintcard.png" alt="ヒントカードのサンプル" class="hint-image" title="タップして拡大">
+                            </li>
+                            <li>レンタルデッキから1つ選んで参加</li>
+                            <li>1勝ごとにデッキ交換が可能<br>
+                                <span style="font-size: 0.85em; color: var(--text-muted);">（交換先は<span class="highlight text-gold">「交換用デッキ」</span>または<span class="highlight text-gold">「直前に勝利した相手のデッキ」</span>）</span>
+                            </li>
+                        </ul>
+                    `;
+                } else if (title === "128チーム チーム戦") {
+                    contentHTML += `
+                        <h4 class="modal-section-title">あそびかた</h4>
+                        <ul class="modal-list">
+                            <li>3人1組でチームを組んでエントリー</li>
+                            <li>全128チームによる予選＋決勝トーナメント</li>
+                            <li>豪華景品や最強チームの称号を手に入れましょう！</li>
+                        </ul>
+                    `;
+                } else if (title === "ゆびをふるポケカ体験") {
+                    contentHTML += `
+                        <h4 class="modal-section-title">あそびかた</h4>
+                        <ul class="modal-list">
+                            <li>用意された専用の「ゆびをふる」デッキを使用</li>
+                            <li>ワザの指示に従ってサイコロを振り、様々な効果を発動</li>
+                            <li>初心者から経験者まで運試しとして楽しめます</li>
+                        </ul>
+                    `;
+                } else if (title === "ガンスリンガーバトル") {
+                    contentHTML += `
+                        <h4 class="modal-section-title">あそびかた</h4>
+                        <ul class="modal-list">
+                            <li>列に並んでマッチングし、次々と現れる相手と対戦</li>
+                            <li>勝った場合はそのまま席に残り、次の挑戦者を待ち受けます</li>
+                            <li>負けても列の最後尾から再チャレンジ可能です</li>
+                            <li>連勝数に応じて景品がステップアップ！</li>
+                        </ul>
+                    `;
+                }
+
+                modalBody.innerHTML = contentHTML;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
+
+                const hintImages = modalBody.querySelectorAll('.hint-image');
+                hintImages.forEach(img => {
+                    img.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        img.classList.toggle('zoomed');
+                    });
+                });
             });
         });
 
@@ -112,7 +159,7 @@ accordionHeaders.forEach(header => {
             document.body.style.overflow = '';
         };
 
-        modalClose.addEventListener('click', closeModal);
-        modalOverlay.addEventListener('click', closeModal);
+        if (modalClose) modalClose.addEventListener('click', closeModal);
+        if (modalOverlay) modalOverlay.addEventListener('click', closeModal);
     }
 });
