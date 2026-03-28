@@ -103,6 +103,7 @@ accordionHeaders.forEach(header => {
                             </li>
                             <li>ヒントカードをもとにデッキ内容を推測<br>
                                 <img src="hintcard.png" alt="ヒントカードのサンプル" class="hint-image">
+                                <span style="font-size: 0.85em; color: var(--text-muted);">あの<span class="highlight text-gold">「人気YouTuber」</span>からの提供デッキも!?</span>
                             </li>
                             <li>レンタルデッキから1つ選んで参加</li>
                             <li>1勝ごとにデッキ交換が可能<br>
