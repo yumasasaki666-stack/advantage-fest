@@ -125,8 +125,8 @@ accordionHeaders.forEach(header => {
                         <h4 class="modal-section-title">あそびかた</h4>
                         <ul class="modal-list">
                             <li>用意された専用の「ゆびをふる」デッキを使用</li>
-                            <li>ワザの指示に従ってサイコロを振り、様々な効果を発動</li>
-                            <li>初心者から経験者まで運試しとして楽しめます</li>
+                            <li>ゆびをふるマシンを押すとワザがランダムで決定！</li>
+                            <li>先にサイドを4枚取ったら勝ち！</li>
                         </ul>
                     `;
                 } else if (title === "ガンスリンガーバトル") {
