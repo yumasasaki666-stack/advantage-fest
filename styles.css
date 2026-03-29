@@ -584,6 +584,17 @@ h1, h2, h3, h4 {
     flex: 1;
 }
 
+.card-grid .guest-card-wrapper {
+    max-width: none;
+    min-width: 0;
+    flex: none;
+    height: 100%;
+}
+
+.card-grid .guest-card-wrapper .card {
+    height: 100%;
+}
+
 .speech-bubble {
     position: absolute;
     top: -25px;
@@ -603,7 +614,7 @@ h1, h2, h3, h4 {
 .speech-bubble::after {
     content: '';
     position: absolute;
-    bottom: -8px;
+    bottom: -7px; /* Set to -7px instead of -8px to hide the 1px rendering gap */
     left: 50%;
     transform: translateX(-50%);
     border-width: 8px 8px 0;
@@ -1052,7 +1063,7 @@ h1, h2, h3, h4 {
 .modal-title {
     font-size: 1.5rem;
     color: var(--secondary-color);
-    margin-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     font-family: var(--font-heading);

@@ -121,6 +121,11 @@ accordionHeaders.forEach(header => {
                         </ul>
                     `;
                 } else if (title === "ゆびをふるポケカ体験") {
+                    contentHTML = `
+                        <div class="video-container" style="margin-bottom: 2rem;">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/otNmflL32sE?si=he_0a1t1xLXqMYrr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 100%;"></iframe>
+                        </div>
+                    ` + contentHTML;
                     contentHTML += `
                         <h4 class="modal-section-title">あそびかた</h4>
                         <ul class="modal-list">
