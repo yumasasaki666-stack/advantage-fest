@@ -365,6 +365,100 @@ h1, h2, h3, h4 {
     border-right: 3px solid var(--secondary-color);
 }
 
+.about-details {
+    max-width: 800px;
+    margin: 3rem auto 0;
+    background: rgba(20,20,20,0.8);
+    padding: 3rem;
+    border: 1px solid #333;
+    border-left: 5px solid var(--secondary-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    position: relative;
+    text-align: left;
+}
+
+.about-details::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    width: 30px;
+    height: 30px;
+    border-bottom: 3px solid var(--primary-color);
+    border-right: 3px solid var(--primary-color);
+}
+
+.about-info {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-row {
+    display: flex;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+}
+
+.info-row:last-child {
+    margin-bottom: 0;
+}
+
+.info-title {
+    color: var(--secondary-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
+    width: 140px;
+    text-align: left;
+    flex-shrink: 0;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 1rem;
+    margin-right: 1.5rem;
+}
+
+.info-desc {
+    padding-left: 0;
+    text-align: left;
+    flex: 1;
+}
+
+.info-desc p {
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+.info-desc p:last-child {
+    margin-bottom: 0;
+}
+
+.info-desc strong {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.about-notes {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    text-align: left;
+    line-height: 1.8;
+}
+
+.about-notes p {
+    margin-bottom: 0.8rem;
+}
+
+.about-notes p:last-child {
+    margin-bottom: 0;
+}
+
+.text-red {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
 /* EVENT CARDS */
 .card-grid {
     display: grid;
@@ -440,6 +534,134 @@ h1, h2, h3, h4 {
 .card-desc {
     color: var(--text-muted);
     font-size: 0.95rem;
+}
+
+/* GUEST */
+.guest-category {
+    margin-bottom: 5rem;
+}
+
+.guest-category:last-child {
+    margin-bottom: 0;
+}
+
+.category-title {
+    font-size: 1.8rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-family: var(--font-heading);
+    letter-spacing: 0.1em;
+    position: relative;
+}
+
+.category-title::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 1rem auto 0;
+}
+
+.card-grid-center {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.card-grid-center .card {
+    min-width: 280px;
+    max-width: 350px;
+    flex: 1;
+}
+
+.guest-card-wrapper {
+    position: relative;
+    max-width: 350px;
+    min-width: 280px;
+    flex: 1;
+}
+
+.speech-bubble {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-3deg);
+    background: var(--primary-color);
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5), 0 0 20px var(--primary-glow);
+    z-index: 10;
+}
+
+.speech-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: var(--primary-color) transparent transparent transparent;
+}
+
+.guest-card {
+    padding: 2.5rem 2rem;
+}
+
+.guest-image-container {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 20px var(--primary-glow);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 100%;
+    background: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.placeholder-image::after {
+    content: '?';
+    font-size: 4rem;
+    color: #555;
+    font-family: var(--font-heading);
+}
+
+.guest-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.guest-role {
+    color: var(--text-muted);
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.1em;
+}
+
+.card:hover .guest-image {
+    transform: scale(1.1);
 }
 
 /* SCHEDULE */
@@ -709,6 +931,11 @@ h1, h2, h3, h4 {
     
     .section-title { font-size: 2.5rem; }
     .about-content { padding: 2rem 1rem; font-size: 1rem; }
+    
+    .about-details { margin-top: 2rem; padding: 2rem 1.5rem; }
+    .info-row { flex-direction: column; }
+    .info-title { margin-bottom: 1rem; width: auto; display: block; padding-left: 1rem; margin-right: 0; }
+    .info-desc { padding-left: 0; }
     
     .footer-links { flex-direction: column; gap: 1rem; }
 }
