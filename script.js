@@ -92,7 +92,7 @@ accordionHeaders.forEach(header => {
                 
                 modalTitle.textContent = title;
                 
-                let contentHTML = `<p>${desc}</p>`;
+                let contentHTML = `<p class="modal-desc">${desc}</p>`;
 
                 if (title === "ポケカバトルファクトリー") {
                     contentHTML += `
@@ -101,9 +101,9 @@ accordionHeaders.forEach(header => {
                             <li>3人1組のフライト式で進行（総当たり3回対戦）<br>
                                 <span style="font-size: 0.85em; color: var(--text-muted);">※3人揃ったら対戦スタート</span>
                             </li>
-                            <li>ヒントカードをもとにデッキ内容を推測<br>
+                            <li class="hint-card-item">ヒントカードをもとにデッキ内容を推測<br>
                                 <img src="hintcard.png" alt="ヒントカードのサンプル" class="hint-image">
-                                <span style="font-size: 0.85em; color: var(--text-muted);">あの<span class="highlight text-gold">「人気YouTuber」</span>からの提供デッキも!?</span>
+                                <span class="hint-image-caption">あの<span class="highlight text-gold">「人気YouTuber」</span>からの提供デッキも!?</span>
                             </li>
                             <li>レンタルデッキから1つ選んで参加</li>
                             <li>1勝ごとにデッキ交換が可能<br>
@@ -122,8 +122,8 @@ accordionHeaders.forEach(header => {
                     `;
                 } else if (title === "ゆびをふるポケカ体験") {
                     contentHTML = `
-                        <div class="video-container" style="margin-bottom: 2rem;">
-                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/otNmflL32sE?si=he_0a1t1xLXqMYrr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 100%;"></iframe>
+                        <div class="video-container">
+                            <iframe width="100%" height="315" src="https://www.youtube.com/embed/otNmflL32sE?si=he_0a1t1xLXqMYrr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                         </div>
                     ` + contentHTML;
                     contentHTML += `
@@ -146,6 +146,7 @@ accordionHeaders.forEach(header => {
                     `;
                 }
 
+                contentHTML += `<div class="modal-cta"><a href="#" class="btn btn-primary glow-red">イベントに参加する</a></div>`;
                 modalBody.innerHTML = contentHTML;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
