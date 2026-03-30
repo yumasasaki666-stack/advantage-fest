@@ -68,53 +68,30 @@
     <section class="section about" id="about">
         <div class="container fade-in">
             <h2 class="section-title">ABOUT<span>イベントについて</span></h2>
-            <div class="about-content">
-                <p class="about-catchphrase">日本一のポケカ自主大会を、ここ名古屋から。</p>
-                
-                <div class="about-divider"></div>
-
-                <div class="about-block">
-                    <p class="about-text-medium">
+            <div class="about-unified-container fade-in">
+                <div class="about-text-content">
+                    <p class="about-lead">
                         「アドフェス」は、ポケモンカードゲームを愛するすべてのプレイヤーのための大型イベントです。<br>
                         初心者から熟練者まで、それぞれのプレイスタイルに合わせて楽しめる多彩なバトルが用意されています。
                     </p>
                 </div>
-
-                <div class="about-block">
-                    <ul class="about-features">
-                        <li><span class="feature-icon">🏆</span> 128チームが頂点を競うメイントーナメント</li>
-                        <li><span class="feature-icon">🤝</span> ランダムデッキで戦うバトルファクトリー</li>
-                        <li><span class="feature-icon">✨</span> 初心者も安心の「ゆびをふる」体験コーナー</li>
-                        <li><span class="feature-icon">🎁</span> 勝つほど景品が豪華になるガンスリンガー</li>
-                    </ul>
-                </div>
-
-                <div class="about-block">
-                    <p class="about-text-medium vision-text">
-                        熱狂と興奮が渦巻く会場で、新たな仲間との出会いと限界への挑戦があなたを待っています。
-                    </p>
+                
+                <div class="about-images-row">
+                    <img src="taisen.png" alt="ポケカ対戦の様子" class="about-image">
+                    <img src="nagoyakoukaido.webp" alt="岡谷鋼機名古屋公会堂の外観" class="about-image">
                 </div>
             </div>
             
-            <div class="about-details">
-                <div class="about-info">
-                    <div class="info-row">
-                        <div class="info-title">開催日時</div>
-                        <div class="info-desc">
-                            <p><strong>2025年12月21日（日）</strong></p>
-                            <p><strong>10:00〜19:00</strong></p>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <div class="info-title">会場</div>
-                        <div class="info-desc">
-                            <p><strong>岡谷鋼機名古屋公会堂（4Fホール）</strong></p>
-                            <p><strong>〒466-0064　愛知県名古屋市昭和区鶴舞1丁目1-3</strong></p>
-                            <p>地下鉄鶴舞線「鶴舞駅」4番出口より徒歩2分</p>
-                        </div>
-                    </div>
+            <div class="about-info-box fade-in">
+                <div class="info-row-item">
+                    <div class="info-row-label">開催日時</div>
+                    <div class="info-row-value">2025年12月21日（日）</div>
                 </div>
-                <div class="about-notes">
+                <div class="info-row-item">
+                    <div class="info-row-label">会場</div>
+                    <div class="info-row-value">岡谷鋼機名古屋公会堂（4Fホール）</div>
+                </div>
+                <div class="info-notes">
                     <p>※本会場内では来場者の写真・動画の撮影および、当日の様子をSNS・各種メディアで公開させていただく場合がございます。<br>
                     会場へお越しいただいた時点で写真・映像の利用許諾をいただいたものとみなします。あらかじめご了承ください。</p>
                     <p>※ご参加には<span class="text-red">トナメル</span>のご利用が必要です。あらかじめご用意の上ご来場ください。</p>
@@ -152,14 +129,7 @@
                     <h3 class="card-title">ゆびをふるポケカ体験</h3>
                     <p class="card-desc">あの人気動画のあそびかたを生で体験！何が起こるかわからない！？指定されたワザ「ゆびをふる」だけで戦う、初心者でも楽しめるカジュアルバトル。</p>
                 </div>
-                <!-- Card 4 -->
-                <div class="card fade-in">
-                    <div class="card-image-container">
-                        <img src="card4.png" alt="ガンスリンガーバトル" class="card-image">
-                    </div>
-                    <h3 class="card-title">ガンスリンガーバトル</h3>
-                    <p class="card-desc">勝てば勝つほど景品が豪華に！次々と現れる対戦相手を倒し続け、連勝記録を打ち立てよう。</p>
-                </div>
+
             </div>
         </div>
     </section>
@@ -175,6 +145,7 @@
                 <div class="card-grid">
                     <!-- Guest 1 -->
                     <div class="guest-card-wrapper">
+                        <div class="speech-bubble mobile-only">浪速の放課後ポケカchの3人が参戦！</div>
                         <div class="card fade-in guest-card">
                             <div class="guest-image-container">
                                 <img src="guest_fukasekabu.png" alt="フカセカブ" class="guest-image">
@@ -185,7 +156,7 @@
                     </div>
                     <!-- Guest 2 -->
                     <div class="guest-card-wrapper">
-                        <div class="speech-bubble">浪速の放課後ポケカchの3人が参戦！</div>
+                        <div class="speech-bubble desktop-only">浪速の放課後ポケカchの3人が参戦！</div>
                         <div class="card fade-in guest-card">
                             <div class="guest-image-container">
                                 <img src="guest_fujitaharuto.png" alt="フジタハルト" class="guest-image">
@@ -207,41 +178,48 @@
                 </div>
             </div>
 
-            <!-- 実況／解説 -->
-            <div class="guest-category fade-in">
-                <h3 class="category-title">実況／解説</h3>
-                <div class="card-grid card-grid-center">
-                    <!-- Placeholder 1 -->
-                    <div class="card fade-in guest-card">
-                        <div class="guest-image-container">
-                            <div class="placeholder-image"></div>
+            <div class="guest-categories-row">
+                <!-- 実況／解説 -->
+                <div class="guest-category fade-in guest-category-2col">
+                    <h3 class="category-title">実況／解説</h3>
+                    <div class="card-grid card-grid-center">
+                        <!-- Placeholder 1 -->
+                        <div class="guest-card-wrapper">
+                            <div class="speech-bubble">超豪華な実況＆解説！</div>
+                            <div class="card guest-card">
+                                <div class="guest-image-container">
+                                    <img src="kori.jpg" alt="コーリー" class="guest-image">
+                                </div>
+                                <p class="guest-role">実況</p>
+                                <h3 class="card-title">コーリー</h3>
+                            </div>
                         </div>
-                        <p class="guest-role">実況</p>
-                        <h3 class="card-title">〇〇 〇〇</h3>
-                    </div>
-                    <!-- Placeholder 2 -->
-                    <div class="card fade-in guest-card">
-                        <div class="guest-image-container">
-                            <img src="ryujin.jpg" alt="りゅうじん" class="guest-image">
+                        <!-- Placeholder 2 -->
+                        <div class="guest-card-wrapper">
+                            <div class="card guest-card">
+                                <div class="guest-image-container">
+                                    <img src="ryujin.jpg" alt="りゅうじん" class="guest-image">
+                                </div>
+                                <p class="guest-role">解説</p>
+                                <h3 class="card-title">りゅうじん</h3>
+                            </div>
                         </div>
-                        <p class="guest-role">解説</p>
-                        <h3 class="card-title">りゅうじん</h3>
                     </div>
                 </div>
-            </div>
 
-            <!-- 主催 -->
-            <div class="guest-category fade-in">
-                <h3 class="category-title">主催</h3>
-                <div class="card-grid card-grid-center">
-                    <div class="guest-card-wrapper fade-in">
-                        <div class="speech-bubble">当日は2人も選手として参加！</div>
-                        <div class="card guest-card organizer-card">
-                            <div class="guest-image-container">
-                                <img src="guest_advantage.png" alt="いちご＆おーさわ" class="guest-image">
+                <!-- 主催 -->
+                <div class="guest-category fade-in guest-category-1col">
+                    <h3 class="category-title">主催</h3>
+                    <div class="card-grid card-grid-center">
+                        <div class="guest-card-wrapper">
+                            <div class="speech-bubble">当日は2人も選手として参加！</div>
+                            <div class="card guest-card organizer-card">
+                                <div class="guest-image-container">
+                                    <img src="guest_advantage.png" alt="いちご＆おーさわ" class="guest-image">
+                                </div>
+                                <p class="guest-role">アドバンテージ</p>
+                                <h3 class="card-title">いちご＆おーさわ</h3>
                             </div>
-                            <p class="guest-role">アドバンテージ</p>
-                            <h3 class="card-title">いちご＆おーさわ</h3>
                         </div>
                     </div>
                 </div>
