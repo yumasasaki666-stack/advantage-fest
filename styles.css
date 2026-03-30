@@ -340,18 +340,90 @@ h1, h2, h3, h4 {
 削除 or コメントアウト */
 
 /* ABOUT */
+#about .section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: var(--primary-color);
+    margin: 1.5rem auto 0;
+}
+
 .about-content {
-    max-width: 800px;
+    max-width: 750px;
     margin: 0 auto;
     text-align: center;
-    font-size: 1.2rem;
-    line-height: 2;
-    background: rgba(20,20,20,0.8);
-    padding: 3rem;
-    border: 1px solid #333;
-    border-left: 5px solid var(--primary-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    background-color: #111;
+    padding: 80px 40px;
+    border: 1px solid #222;
+    border-top: 5px solid var(--primary-color);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.6);
     position: relative;
+}
+
+.about-catchphrase {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+    font-family: var(--font-heading);
+    line-height: 1.4;
+}
+
+.about-divider {
+    width: 40px;
+    height: 2px;
+    background: #444;
+    margin: 0 auto 3rem;
+}
+
+.about-block {
+    margin-bottom: 3rem;
+}
+
+.about-block:last-child {
+    margin-bottom: 0;
+}
+
+.about-text-medium {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #e0e0e0;
+}
+
+.about-features {
+    list-style: none;
+    padding: 2rem 0;
+    margin: 0 auto;
+    display: inline-block;
+    text-align: left;
+    border-top: 1px dashed #333;
+    border-bottom: 1px dashed #333;
+}
+
+.about-features li {
+    font-size: 1rem;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+    color: #cccccc;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.about-features li:last-child {
+    margin-bottom: 0;
+}
+
+.feature-icon {
+    font-size: 1.3rem;
+}
+
+.vision-text {
+    font-weight: 700;
+    color: #fff;
+    font-size: 1.2rem;
 }
 
 .about-content::after {
