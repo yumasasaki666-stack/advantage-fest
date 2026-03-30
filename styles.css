@@ -379,7 +379,7 @@ h1, h2, h3, h4 {
     background-repeat: no-repeat;
     background-position: center;
     background-size: contain;
-    opacity: 0.08;
+    opacity: 0.04;
     pointer-events: none;
     z-index: 0;
     -webkit-mask-image: linear-gradient(to right, transparent 0%, black 50%);
