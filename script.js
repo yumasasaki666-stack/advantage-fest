@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         fadeElements.forEach(element => {
             const elementTop = element.getBoundingClientRect().top;
-            
+
             if (elementTop < triggerBottom) {
                 element.classList.add('visible');
             }
@@ -53,28 +53,28 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', checkFade);
 
     // Accordion for FAQ
-const accordionHeaders = document.querySelectorAll('.accordion-header');
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
 
-accordionHeaders.forEach(header => {
-    header.addEventListener('click', () => {
-        header.classList.toggle('active');
-        const content = header.nextElementSibling;
-        
-        if (header.classList.contains('active')) {
-            // 先にpaddingをつける
-            content.style.padding = "1.5rem";
-            
-            // 一瞬待ってから高さ計算（←これがミソ）
-            requestAnimationFrame(() => {
-                content.style.maxHeight = content.scrollHeight +40 + "px";
-            });
+    accordionHeaders.forEach(header => {
+        header.addEventListener('click', () => {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
 
-        } else {
-            content.style.maxHeight = null;
-            content.style.padding = "0 1.5rem";
-        }
+            if (header.classList.contains('active')) {
+                // 先にpaddingをつける
+                content.style.padding = "1.5rem";
+
+                // 一瞬待ってから高さ計算（←これがミソ）
+                requestAnimationFrame(() => {
+                    content.style.maxHeight = content.scrollHeight + 40 + "px";
+                });
+
+            } else {
+                content.style.maxHeight = null;
+                content.style.padding = "0 1.5rem";
+            }
+        });
     });
-});
 
     // Event Modal
     const eventCards = document.querySelectorAll('#event .card');
@@ -89,10 +89,49 @@ accordionHeaders.forEach(header => {
             card.addEventListener('click', () => {
                 const title = card.querySelector('.card-title').textContent;
                 const desc = card.querySelector('.card-desc').textContent;
-                
+
                 modalTitle.textContent = title;
-                
-                let contentHTML = `<p class="modal-desc">${desc}</p>`;
+
+                let overviewMap = {
+                    "３人チーム戦": `
+                        <li><strong>形式：</strong>３人チーム戦</li>
+                        <li><strong>参加費：</strong>2,500円/人</li>
+                        <li><strong>定員：</strong>128チーム（384人）</li>
+                    `,
+                    "ポケカバトルファクトリー": `
+                        <li><strong>形式：</strong>レンタルデッキ対戦</li>
+                        <li><strong>所要時間：</strong>約90分</li>
+                        <li><strong>参加費：</strong>300円</li>
+                        <li><strong>対象：</strong>初心者OK</li>
+                    `,
+                    "スリーストリークバトル": `
+                        <li><strong>形式：</strong>ガンスリンガー</li>
+                        <li><strong>所要時間：</strong>約90分（3連勝時）</li>
+                        <li><strong>参加費：</strong>300円</li>
+                    `,
+                    "ゆびをふるポケカ体験": `
+                        <li><strong>形式：</strong>カジュアルバトル</li>
+                        <li><strong>所要時間：</strong>約30分</li>
+                        <li><strong>参加費：</strong>無料</li>
+                        <li><strong>対象：</strong>初心者OK</li>
+                    `
+                };
+
+                let overviewList = overviewMap[title] || `
+                        <li><strong>形式：</strong>未定</li>
+                        <li><strong>参加費：</strong>未定</li>
+                `;
+
+                let contentHTML = `
+                    <div class="modal-overview">
+                        <h4 class="modal-section-title">イベント概要</h4>
+                        <ul class="modal-overview-list">
+                            ${overviewList}
+                        </ul>
+                    </div>
+                `;
+
+                contentHTML += `<p class="modal-desc">${desc}</p>`;
 
                 if (title === "ポケカバトルファクトリー") {
                     contentHTML += `
@@ -111,7 +150,7 @@ accordionHeaders.forEach(header => {
                             </li>
                         </ul>
                     `;
-                } else if (title === "128チーム チーム戦") {
+                } else if (title === "３人チーム戦") {
                     contentHTML += `
                         <h4 class="modal-section-title">あそびかた</h4>
                         <ul class="modal-list">
@@ -134,7 +173,7 @@ accordionHeaders.forEach(header => {
                             <li>先にサイドを4枚取ったら勝ち！</li>
                         </ul>
                     `;
-                } else if (title === "ガンスリンガーバトル") {
+                } else if (title === "スリーストリークバトル") {
                     contentHTML += `
                         <h4 class="modal-section-title">あそびかた</h4>
                         <ul class="modal-list">
@@ -146,7 +185,7 @@ accordionHeaders.forEach(header => {
                     `;
                 }
 
-                contentHTML += `<div class="modal-cta"><a href="#" class="btn btn-primary glow-red">イベントに参加する</a></div>`;
+                contentHTML += `<div class="modal-cta"><a href="https://livepocket.jp/e/x5q_2" class="btn btn-primary glow-red" target="_blank">イベントに参加する</a></div>`;
                 modalBody.innerHTML = contentHTML;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
