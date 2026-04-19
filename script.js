@@ -100,13 +100,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     `,
                     "ポケカバトルファクトリー": `
                         <li><strong>形式：</strong>レンタルデッキ対戦</li>
-                        <li><strong>所要時間：</strong>約90分</li>
+                        <li><strong>所要時間：</strong>約80分</li>
                         <li><strong>参加費：</strong>300円</li>
                         <li><strong>対象：</strong>初心者OK</li>
                     `,
                     "スリーストリークバトル": `
                         <li><strong>形式：</strong>ガンスリンガー</li>
-                        <li><strong>所要時間：</strong>約90分（3連勝時）</li>
+                        <li><strong>所要時間：</strong>25～80分（連勝数で変化）</li>
                         <li><strong>参加費：</strong>300円</li>
                     `,
                     "ゆびをふるポケカ体験": `
@@ -168,9 +168,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     contentHTML += `
                         <h4 class="modal-section-title">あそびかた</h4>
                         <ul class="modal-list">
-                            <li>用意された専用の「ゆびをふる」デッキを使用</li>
+                            <li class="hint-card-item">自分でイラストを描いてゆびをふるカードを作成！<br>
+                                <img src="yubiwofuru.png" alt="ゆびをふるカード" class="hint-image" style="box-shadow: none; border: none; background: transparent;">
+                            </li>
                             <li>ゆびをふるマシンを押すとワザがランダムで決定！</li>
-                            <li>先にサイドを4枚取ったら勝ち！</li>
+                            <li>相手のゆびをふるカードがきぜつしたら勝ち！</li>
                         </ul>
                     `;
                 } else if (title === "スリーストリークバトル") {
@@ -179,7 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
                         <ul class="modal-list">
                             <li>列に並んでマッチングし、次々と現れる相手と対戦</li>
                             <li>勝った場合はそのまま席に残り、次の挑戦者を待ち受けます</li>
-                            <li>負けても列の最後尾から再チャレンジ可能です</li>
                             <li>連勝数に応じて景品がステップアップ！</li>
                         </ul>
                     `;
