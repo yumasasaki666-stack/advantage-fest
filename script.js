@@ -149,6 +149,11 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span style="font-size: 0.85em; color: var(--text-muted);">（交換先は<span class="highlight text-gold">「交換用デッキ」</span>または<span class="highlight text-gold">「直前に勝利した相手のデッキ」</span>）</span>
                             </li>
                         </ul>
+                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
+                        <ul class="modal-list prize-list">
+                            <li><span class="prize-rank">参加賞</span><span class="prize-desc">拡張パック「アビスアイ」2パック</span></li>
+                            <li><span class="prize-rank">勝利賞</span><span class="prize-desc">勝利数×1パック</span></li>
+                        </ul>
                     `;
                 } else if (title === "３人チーム戦") {
                     contentHTML += `
@@ -156,7 +161,15 @@ document.addEventListener('DOMContentLoaded', () => {
                         <ul class="modal-list">
                             <li>3人1組でチームを組んでエントリー</li>
                             <li>全128チームによる予選＋決勝トーナメント</li>
-                            <li>豪華景品や最強チームの称号を手に入れましょう！</li>
+                            <li>豪華景品や最強チームの称号を手に入れよう！</li>
+                        </ul>
+                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
+                        <ul class="modal-list prize-list">
+                            <li><span class="prize-rank">優勝</span><span class="prize-desc">拡張パック「アビスアイ」12BOX<br>アドバンテージ商品券15,000円分</span></li>
+                            <li><span class="prize-rank">準優勝</span><span class="prize-desc">拡張パック「アビスアイ」6BOX<br>アドバンテージ商品券15,000円分</span></li>
+                            <li><span class="prize-rank">ベスト4</span><span class="prize-desc">拡張パック「アビスアイ」3BOX<br>拡張パック「アビスアイ」</span></li>
+                            <li><span class="prize-rank">ベスト8</span><span class="prize-desc">アドバンテージ商品券15,000円分</span></li>
+                            <li><span class="prize-rank">ベスト16</span><span class="prize-desc">アドバンテージ商品券9,000円分</span></li>
                         </ul>
                     `;
                 } else if (title === "ゆびをふるポケカ体験") {
@@ -182,6 +195,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             <li>列に並んでマッチングし、次々と現れる相手と対戦</li>
                             <li>勝った場合はそのまま席に残り、次の挑戦者を待ち受けます</li>
                             <li>連勝数に応じて景品がステップアップ！</li>
+                        </ul>
+                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
+                        <ul class="modal-list prize-list">
+                            <li><span class="prize-rank">1勝</span><span class="prize-desc">拡張パック「アビスアイ」1パック</span></li>
+                            <li><span class="prize-rank">2勝</span><span class="prize-desc">拡張パック「アビスアイ」＋2パック</span></li>
+                            <li><span class="prize-rank">3勝</span><span class="prize-desc">拡張パック「アビスアイ」＋4パック<br>
+                                <span style="font-size: 0.85em; color: var(--text-muted);">※3勝時合計7パック</span>
+                            </span></li>
                         </ul>
                     `;
                 }
