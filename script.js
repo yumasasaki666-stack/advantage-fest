@@ -137,8 +137,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     contentHTML += `
                         <h4 class="modal-section-title">あそびかた</h4>
                         <ul class="modal-list">
-                            <li>3人1組のフライト式で進行（総当たり3回対戦）<br>
-                                <span style="font-size: 0.85em; color: var(--text-muted);">※3人揃ったら対戦スタート</span>
+                            <li>4人1組もしくは6人1組のフライト式で進行（どちらの場合も総当たりで3回対戦）<br>
+                                <span style="font-size: 0.85em; color: var(--text-muted);">※所定人数が揃ったら対戦スタート</span>
                             </li>
                             <li class="hint-card-item">ヒントカードをもとにデッキ内容を推測<br>
                                 <img src="hintcard.png" alt="ヒントカードのサンプル" class="hint-image">
@@ -186,7 +186,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 }
 
-                contentHTML += `<div class="modal-cta"><a href="https://livepocket.jp/e/x5q_2" class="btn btn-primary glow-red" target="_blank">イベントに参加する</a></div>`;
+                if (title !== "ポケカバトルファクトリー" && title !== "スリーストリークバトル") {
+                    contentHTML += `<div class="modal-cta"><a href="https://livepocket.jp/e/x5q_2" class="btn btn-primary glow-red" target="_blank">イベントに参加する</a></div>`;
+                }
                 modalBody.innerHTML = contentHTML;
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
