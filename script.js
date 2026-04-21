@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span style="font-size: 0.85em; color: var(--text-muted);">（交換先は<span class="highlight text-gold">「交換用デッキ」</span>または<span class="highlight text-gold">「直前に勝利した相手のデッキ」</span>）</span>
                             </li>
                         </ul>
-                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
+                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">賞品</h4>
                         <ul class="modal-list prize-list">
                             <li><span class="prize-rank">参加賞</span><span class="prize-desc">拡張パック「アビスアイ」2パック</span></li>
                             <li><span class="prize-rank">勝利賞</span><span class="prize-desc">勝利数×1パック</span></li>
@@ -168,7 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <p style="line-height: 1.6; margin: 0; font-size: 0.95rem;">お一人で参加される方向けのエントリー方法です。<br>個人で<a href="https://livepocket.jp/e/x5q_2" target="_blank" style="color: var(--secondary-color); text-decoration: underline; text-underline-offset: 4px; font-weight: bold;">LivePocket</a>からご応募いただくと、当日、運営によりランダムに編成された3名1組のチームでご参加いただけます。</p>
                             </div>
                         </div>
-                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
+                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">賞品</h4>
                         <ul class="modal-list prize-list">
                             <li><span class="prize-rank">優勝</span><span class="prize-desc">拡張パック「アビスアイ」12BOX<br>アドバンテージ商品券15,000円分</span></li>
                             <li><span class="prize-rank">準優勝</span><span class="prize-desc">拡張パック「アビスアイ」6BOX<br>アドバンテージ商品券15,000円分</span></li>
@@ -199,9 +199,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         <ul class="modal-list">
                             <li>列に並んでマッチングし、次々と現れる相手と対戦</li>
                             <li>勝った場合はそのまま席に残り、次の挑戦者を待ち受けます</li>
-                            <li>連勝数に応じて景品がステップアップ！</li>
+                            <li>連勝数に応じて賞品がステップアップ！</li>
                         </ul>
-                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
+                        <h4 class="modal-section-title" style="margin-top: 2.5rem;">賞品</h4>
                         <ul class="modal-list prize-list">
                             <li><span class="prize-rank">1勝</span><span class="prize-desc">拡張パック「アビスアイ」1パック</span></li>
                             <li><span class="prize-rank">2勝</span><span class="prize-desc">拡張パック「アビスアイ」＋2パック</span></li>
