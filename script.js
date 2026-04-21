@@ -157,12 +157,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     `;
                 } else if (title === "３人チーム戦") {
                     contentHTML += `
-                        <h4 class="modal-section-title">あそびかた</h4>
-                        <ul class="modal-list">
-                            <li>3人1組でチームを組んでエントリー</li>
-                            <li>全128チームによる予選＋決勝トーナメント</li>
-                            <li>豪華景品や最強チームの称号を手に入れよう！</li>
-                        </ul>
+                        <h4 class="modal-section-title">参加方法</h4>
+                        <div style="margin-bottom: 2rem;">
+                            <div style="margin-bottom: 1.5rem;">
+                                <strong class="text-gold" style="font-size: 1.1rem; display: block; margin-bottom: 0.5rem; color: var(--secondary-color);">■ 通常エントリー</strong>
+                                <p style="line-height: 1.6; margin: 0; font-size: 0.95rem;">3名1組のチームを編成し、代表者1名が<a href="https://livepocket.jp/e/x5q_2" target="_blank" style="color: var(--secondary-color); text-decoration: underline; text-underline-offset: 4px; font-weight: bold;">LivePocket</a>よりご応募ください。</p>
+                            </div>
+                            <div>
+                                <strong class="text-gold" style="font-size: 1.1rem; display: block; margin-bottom: 0.5rem; color: var(--secondary-color);">■ ランダムエントリー</strong>
+                                <p style="line-height: 1.6; margin: 0; font-size: 0.95rem;">お一人で参加される方向けのエントリー方法です。<br>個人で<a href="https://livepocket.jp/e/x5q_2" target="_blank" style="color: var(--secondary-color); text-decoration: underline; text-underline-offset: 4px; font-weight: bold;">LivePocket</a>からご応募いただくと、当日、運営によりランダムに編成された3名1組のチームでご参加いただけます。</p>
+                            </div>
+                        </div>
                         <h4 class="modal-section-title" style="margin-top: 2.5rem;">景品</h4>
                         <ul class="modal-list prize-list">
                             <li><span class="prize-rank">優勝</span><span class="prize-desc">拡張パック「アビスアイ」12BOX<br>アドバンテージ商品券15,000円分</span></li>
