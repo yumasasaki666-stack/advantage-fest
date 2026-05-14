@@ -1607,16 +1607,18 @@ h1, h2, h3, h4 {
 
 /* Gold Main Card */
 .sponsor-card-gold {
-    display: block;
-    max-width: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 280px;
     margin: 0 auto;
     background: linear-gradient(180deg, rgba(30,20,10,0.8) 0%, rgba(10,10,10,1) 100%);
-    border: 2px solid #d4af37;
-    border-radius: 12px;
-    padding: 4rem 2rem;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 2rem;
     text-align: center;
-    transition: all 0.4s ease;
-    box-shadow: 0 10px 40px rgba(212, 175, 55, 0.15), inset 0 0 20px rgba(212, 175, 55, 0.05);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.15), inset 0 0 10px rgba(212, 175, 55, 0.05);
     text-decoration: none;
     color: #fff;
     position: relative;
@@ -1636,38 +1638,26 @@ h1, h2, h3, h4 {
 }
 
 .sponsor-card-gold:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 50px rgba(212, 175, 55, 0.3), inset 0 0 30px rgba(212, 175, 55, 0.1);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.25), inset 0 0 15px rgba(212, 175, 55, 0.08);
     border-color: #ffd700;
 }
 
-.sponsor-card-gold .card-image-container {
-    height: auto;
-    background: none;
-    margin-bottom: 2.5rem;
+.sponsor-card-gold .sponsor-image-sm {
+    width: 100%;
+    max-width: 220px;
+    height: 90px;
+    object-fit: contain;
+    margin-bottom: 1.5rem;
+    filter: drop-shadow(0 0 10px rgba(255,255,255,0.15));
 }
 
-.sponsor-card-gold .card-image {
-    width: 85%;
-    max-width: 380px;
-    height: auto;
-    filter: drop-shadow(0 0 15px rgba(255,255,255,0.15));
-}
-
-.sponsor-info .sponsor-title {
-    font-size: 2.2rem;
-    font-weight: 900;
-    margin-bottom: 0.5rem;
+.sponsor-card-gold .sponsor-title-gold-sm {
+    font-size: 1.2rem;
+    font-weight: 700;
     background: linear-gradient(to right, #ffd700, #d4af37, #ffd700);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-}
-
-.sponsor-info .sponsor-desc {
-    color: #cca;
-    font-size: 1.1rem;
-    font-weight: 600;
-    letter-spacing: 0.1em;
 }
 
 /* Standard Cards */
@@ -1700,8 +1690,8 @@ h1, h2, h3, h4 {
 
 .sponsor-card-standard .sponsor-image-sm {
     width: 100%;
-    max-width: 180px;
-    height: 60px;
+    max-width: 220px;
+    height: 90px;
     object-fit: contain;
     margin-bottom: 1.5rem;
 }
@@ -1710,4 +1700,24 @@ h1, h2, h3, h4 {
     font-size: 1.2rem;
     font-weight: 700;
     color: #eee;
+}
+
+@media (min-width: 769px) {
+    .sponsor-card-gold,
+    .sponsor-card-standard {
+        width: 420px;
+        padding: 3rem;
+    }
+
+    .sponsor-card-gold .sponsor-image-sm,
+    .sponsor-card-standard .sponsor-image-sm {
+        max-width: 324px;
+        height: 135px;
+        margin-bottom: 2rem;
+    }
+
+    .sponsor-card-gold .sponsor-title-gold-sm,
+    .sponsor-card-standard .sponsor-title-sm {
+        font-size: 1.8rem;
+    }
 }
