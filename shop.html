@@ -106,13 +106,79 @@
             transform: scaleX(1);
         }
 
-        .shop-card-image-container {
+        /* Card Carousel Controls */
+        .card-carousel-container {
+            position: relative;
             width: 100%;
             height: 350px;
             margin-bottom: 2.5rem;
             display: flex;
             justify-content: center;
             align-items: center;
+            overflow: hidden;
+        }
+
+        .card-carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(20, 20, 20, 0.8);
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            width: 36px;
+            height: 36px;
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+            opacity: 0.7;
+        }
+
+        .card-carousel-nav:hover {
+            opacity: 1;
+            background: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 0 10px var(--primary-glow);
+        }
+
+        .card-carousel-prev {
+            left: 10px;
+        }
+
+        .card-carousel-next {
+            right: 10px;
+        }
+
+        .card-carousel-dots {
+            position: absolute;
+            bottom: 5px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 10;
+            background: rgba(0,0,0,0.5);
+            padding: 4px 8px;
+            border-radius: 10px;
+        }
+
+        .card-carousel-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card-carousel-dot.active {
+            background: var(--secondary-color);
+            box-shadow: 0 0 8px var(--secondary-glow);
+            transform: scale(1.3);
         }
 
         .shop-card-image {
@@ -439,15 +505,15 @@
         const companyImages = [
             {
                 name: "トレカキャンプ",
-                images: ["pop-A01.png", "pop-A02.png", "pop-A03.png"]
+                images: ["pop-01.png", "pop-02.png", "pop-03.png"]
             },
             {
                 name: "カドラバ",
-                images: ["pop-B01.png"]
+                images: ["pop-02.png"]
             },
             {
                 name: "DMMマイカ",
-                images: ["pop-C01.png", "pop-C02.jpg"]
+                images: ["pop-03.png", "pop-04.png"]
             },
             {
                 name: "TOYGER",
@@ -461,48 +527,143 @@
             const modalImg = document.getElementById('gallery-image');
             const modalTitle = document.getElementById('gallery-company-name');
             const modalCounter = document.getElementById('gallery-counter');
-            const btnPrev = document.querySelector('.gallery-nav.prev');
-            const btnNext = document.querySelector('.gallery-nav.next');
+            const modalBtnPrev = document.querySelector('.gallery-modal-content .gallery-nav.prev');
+            const modalBtnNext = document.querySelector('.gallery-modal-content .gallery-nav.next');
             const btnClose = document.querySelector('.gallery-modal-close');
             const overlay = document.querySelector('.gallery-modal-overlay');
 
             let currentCompanyIndex = -1;
             let currentImageIndex = -1;
+            let cardStates = []; // Track currently displayed image index for each card
 
             // 1. カードの生成
             grid.innerHTML = '';
             companyImages.forEach((company, index) => {
+                cardStates[index] = 0;
+
                 const card = document.createElement('div');
                 card.className = 'shop-card fade-in';
-                card.style.opacity = '1'; // Ensure visible when dynamically added
+                card.style.opacity = '1';
                 card.style.transform = 'translateY(0)';
-                card.onclick = () => openGallery(index);
+                
+                // カード全体をクリックしたらモーダルを開く（スワイプによるクリックは後で防止）
+                card.onclick = (e) => {
+                    openGallery(index, cardStates[index]);
+                };
 
-                const imgContainer = document.createElement('div');
-                imgContainer.className = 'shop-card-image-container';
+                const carouselContainer = document.createElement('div');
+                carouselContainer.className = 'card-carousel-container';
+
                 const img = document.createElement('img');
-                img.src = company.images[0]; // 代表画像
+                img.src = company.images[0];
                 img.alt = company.name;
                 img.className = 'shop-card-image';
-                imgContainer.appendChild(img);
+                carouselContainer.appendChild(img);
+
+                // 画像が複数ある場合はカード内に左右矢印とドットナビゲーションを配置
+                if (company.images.length > 1) {
+                    // 左矢印
+                    const prevBtn = document.createElement('button');
+                    prevBtn.className = 'card-carousel-nav card-carousel-prev';
+                    prevBtn.innerHTML = '&#10094;';
+                    prevBtn.onclick = (e) => {
+                        e.stopPropagation(); // モーダルを開かない
+                        cardStates[index] = (cardStates[index] - 1 + company.images.length) % company.images.length;
+                        updateCardImage(index, carouselContainer, company);
+                    };
+                    
+                    // 右矢印
+                    const nextBtn = document.createElement('button');
+                    nextBtn.className = 'card-carousel-nav card-carousel-next';
+                    nextBtn.innerHTML = '&#10095;';
+                    nextBtn.onclick = (e) => {
+                        e.stopPropagation(); // モーダルを開かない
+                        cardStates[index] = (cardStates[index] + 1) % company.images.length;
+                        updateCardImage(index, carouselContainer, company);
+                    };
+
+                    // ドットインジケーター
+                    const dotsContainer = document.createElement('div');
+                    dotsContainer.className = 'card-carousel-dots';
+                    company.images.forEach((_, i) => {
+                        const dot = document.createElement('div');
+                        dot.className = 'card-carousel-dot' + (i === 0 ? ' active' : '');
+                        dot.onclick = (e) => {
+                            e.stopPropagation(); // モーダルを開かない
+                            cardStates[index] = i;
+                            updateCardImage(index, carouselContainer, company);
+                        };
+                        dotsContainer.appendChild(dot);
+                    });
+
+                    carouselContainer.appendChild(prevBtn);
+                    carouselContainer.appendChild(nextBtn);
+                    carouselContainer.appendChild(dotsContainer);
+
+                    // カードのスワイプ操作対応
+                    let touchStartX = 0;
+                    let touchEndX = 0;
+                    
+                    carouselContainer.addEventListener('touchstart', (e) => {
+                        touchStartX = e.changedTouches[0].screenX;
+                    }, {passive: true});
+
+                    carouselContainer.addEventListener('touchend', (e) => {
+                        touchEndX = e.changedTouches[0].screenX;
+                        const diff = touchStartX - touchEndX;
+                        
+                        if (Math.abs(diff) > 40) {
+                            if (diff > 0) {
+                                // 左へスワイプ -> 次の画像
+                                cardStates[index] = (cardStates[index] + 1) % company.images.length;
+                            } else {
+                                // 右へスワイプ -> 前の画像
+                                cardStates[index] = (cardStates[index] - 1 + company.images.length) % company.images.length;
+                            }
+                            updateCardImage(index, carouselContainer, company);
+                        }
+                    }, {passive: true});
+                    
+                    // スワイプ後の意図しないクリックを防ぐ
+                    carouselContainer.addEventListener('click', (e) => {
+                        if (Math.abs(touchStartX - touchEndX) > 40) {
+                            e.stopPropagation();
+                        }
+                        // リセット
+                        touchStartX = 0;
+                        touchEndX = 0;
+                    });
+                }
 
                 const title = document.createElement('h3');
                 title.className = 'shop-card-title';
                 title.textContent = company.name;
 
-                card.appendChild(imgContainer);
+                card.appendChild(carouselContainer);
                 card.appendChild(title);
 
                 grid.appendChild(card);
             });
 
+            // カード内の画像とドットを更新する関数
+            function updateCardImage(index, container, company) {
+                const img = container.querySelector('.shop-card-image');
+                img.src = company.images[cardStates[index]];
+                
+                const dots = container.querySelectorAll('.card-carousel-dot');
+                if (dots.length > 0) {
+                    dots.forEach(d => d.classList.remove('active'));
+                    dots[cardStates[index]].classList.add('active');
+                }
+            }
+
             // 2. モーダル操作
-            function openGallery(companyIndex) {
+            function openGallery(companyIndex, startIndex = 0) {
                 currentCompanyIndex = companyIndex;
-                currentImageIndex = 0;
+                currentImageIndex = startIndex;
                 updateGallery();
                 modal.classList.add('active');
-                document.body.style.overflow = 'hidden'; // 背後のスクロールを防止
+                document.body.style.overflow = 'hidden';
             }
 
             function closeGallery() {
@@ -516,70 +677,73 @@
                 modalTitle.textContent = company.name;
                 modalCounter.textContent = `${currentImageIndex + 1} / ${company.images.length}`;
 
-                // 画像が1枚の場合は矢印を非表示
                 if (company.images.length > 1) {
-                    btnPrev.style.display = 'flex';
-                    btnNext.style.display = 'flex';
+                    modalBtnPrev.style.display = 'flex';
+                    modalBtnNext.style.display = 'flex';
                 } else {
-                    btnPrev.style.display = 'none';
-                    btnNext.style.display = 'none';
+                    modalBtnPrev.style.display = 'none';
+                    modalBtnNext.style.display = 'none';
                 }
+                
+                // モーダルと連動して背景のカード状態も更新しておく
+                cardStates[currentCompanyIndex] = currentImageIndex;
+                const activeCard = grid.children[currentCompanyIndex];
+                const carouselContainer = activeCard.querySelector('.card-carousel-container');
+                updateCardImage(currentCompanyIndex, carouselContainer, company);
             }
 
-            function showPrev() {
+            function showPrevModal() {
                 const company = companyImages[currentCompanyIndex];
                 if (company.images.length <= 1) return;
                 currentImageIndex = (currentImageIndex - 1 + company.images.length) % company.images.length;
                 updateGallery();
             }
 
-            function showNext() {
+            function showNextModal() {
                 const company = companyImages[currentCompanyIndex];
                 if (company.images.length <= 1) return;
                 currentImageIndex = (currentImageIndex + 1) % company.images.length;
                 updateGallery();
             }
 
-            // イベントリスナー登録
             btnClose.addEventListener('click', closeGallery);
             overlay.addEventListener('click', closeGallery);
-            btnPrev.addEventListener('click', showPrev);
-            btnNext.addEventListener('click', showNext);
+            modalBtnPrev.addEventListener('click', showPrevModal);
+            modalBtnNext.addEventListener('click', showNextModal);
 
-            // キーボード操作 (ESCで閉じる、左右で切り替え)
             document.addEventListener('keydown', (e) => {
                 if (!modal.classList.contains('active')) return;
                 if (e.key === 'Escape') closeGallery();
-                if (e.key === 'ArrowLeft') showPrev();
-                if (e.key === 'ArrowRight') showNext();
+                if (e.key === 'ArrowLeft') showPrevModal();
+                if (e.key === 'ArrowRight') showNextModal();
             });
 
-            // 3. スマホ向けスワイプ操作
-            let touchStartX = 0;
-            let touchEndX = 0;
+            // 3. モーダル上のスマホ向けスワイプ操作
+            let modalTouchStartX = 0;
+            let modalTouchEndX = 0;
             const swipeThreshold = 50;
 
             const modalBody = document.querySelector('.gallery-body');
 
             modalBody.addEventListener('touchstart', (e) => {
-                touchStartX = e.changedTouches[0].screenX;
+                modalTouchStartX = e.changedTouches[0].screenX;
             }, {passive: true});
 
             modalBody.addEventListener('touchend', (e) => {
-                touchEndX = e.changedTouches[0].screenX;
-                handleSwipe();
+                modalTouchEndX = e.changedTouches[0].screenX;
+                handleModalSwipe();
             }, {passive: true});
 
-            function handleSwipe() {
+            function handleModalSwipe() {
                 if (!modal.classList.contains('active')) return;
                 const company = companyImages[currentCompanyIndex];
                 if (company.images.length <= 1) return;
 
-                if (touchEndX < touchStartX - swipeThreshold) {
-                    showNext(); // 左スワイプ -> 次へ
+                if (modalTouchEndX < modalTouchStartX - swipeThreshold) {
+                    showNextModal();
                 }
-                if (touchEndX > touchStartX + swipeThreshold) {
-                    showPrev(); // 右スワイプ -> 前へ
+                if (modalTouchEndX > modalTouchStartX + swipeThreshold) {
+                    showPrevModal();
                 }
             }
         });
