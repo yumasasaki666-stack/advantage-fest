@@ -171,19 +171,18 @@
         .card-carousel {
             position: relative;
             width: 100%;
+            aspect-ratio: 4 / 3;
             background: #070707;
-            /* let height be driven by image */
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 200px;
+            flex-shrink: 0;
         }
         .card-carousel-img {
             display: block;
             width: 100%;
-            height: auto;
-            max-height: 420px;
+            height: 100%;
             object-fit: contain;
             transition: transform 0.5s ease, filter 0.5s ease;
             user-select: none;
@@ -703,11 +702,7 @@
                     }, {passive:true});
                 }
 
-                // expand hint
-                const hint = document.createElement('div');
-                hint.className = 'card-expand-hint';
-                hint.textContent = 'クリックで拡大 →';
-                carousel.appendChild(hint);
+
 
                 // ── card info ──
                 const info = document.createElement('div');
