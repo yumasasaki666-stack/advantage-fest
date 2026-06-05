@@ -3,411 +3,503 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="アドフェスの物販・出展情報">
+    <meta name="description" content="アドフェス 当日の物販・出展情報">
     <title>EXHIBITORS & SHOPS | アドフェス</title>
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="script.js" defer></script>
     <style>
-        /* Shop specific styles */
+
+        /* ===========================
+           HERO
+        =========================== */
         .shop-hero {
             padding: 160px 0 80px;
             text-align: center;
-            background: linear-gradient(135deg, rgba(20,0,0,0.9) 0%, rgba(5,5,5,0.95) 100%);
-            border-bottom: 2px solid var(--primary-color);
             position: relative;
+            background: #050505;
+            overflow: hidden;
         }
-        
         .shop-hero::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('logo.png');
-            background-repeat: no-repeat;
-            background-position: center;
-            background-size: 800px;
-            opacity: 0.05;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 50% 0%, rgba(180,0,0,0.18) 0%, transparent 70%),
+                url('logo.png') center/700px no-repeat;
+            opacity: 0.08;
             pointer-events: none;
         }
-
-        .shop-hero .section-title {
-            margin-bottom: 2rem;
+        .shop-hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary-color) 30%, var(--secondary-color) 50%, var(--primary-color) 70%, transparent);
+            box-shadow: 0 0 20px var(--primary-glow);
+        }
+        .shop-hero-inner {
             position: relative;
             z-index: 2;
-            font-size: 4rem;
+        }
+        .shop-hero h1 {
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            font-family: var(--font-heading);
+            color: #fff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255,215,0,0.2);
+        }
+        .shop-hero h1 span {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--primary-color);
+            letter-spacing: 0.25em;
+            margin-top: 0.6rem;
+            font-weight: 700;
+        }
+        .shop-hero .btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 2.5rem;
+            padding: 0.75rem 2rem;
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--secondary-color);
+            border: 1px solid rgba(255,215,0,0.4);
+            background: rgba(255,215,0,0.06);
+            border-radius: 2px;
+            transition: all 0.3s ease;
+        }
+        .shop-hero .btn-back:hover {
+            background: rgba(255,215,0,0.14);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 20px var(--secondary-glow);
+            color: #fff;
+        }
+        .shop-hero .btn-back svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
         }
 
-        .shop-btn-back {
-            margin-top: 1rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        .shop-card-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 4rem;
-            margin-top: 2rem;
-        }
-
-        @media (min-width: 768px) {
-            .shop-card-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (min-width: 1024px) {
-            .shop-card-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 5rem 4rem;
-                padding: 0 4rem;
-            }
-        }
-
-        .shop-card {
-            background: linear-gradient(145deg, #161616, #0d0d0d);
-            border: 1px solid #222;
-            padding: 3rem;
+        /* ===========================
+           SECTION LEAD
+        =========================== */
+        .shop-lead {
             text-align: center;
-            transition: all 0.4s ease;
-            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
-            position: relative;
+            margin-bottom: 4rem;
+        }
+        .shop-lead-title {
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            letter-spacing: 0.25em;
+            color: var(--secondary-color);
+            text-transform: uppercase;
+        }
+        .shop-lead-title::before,
+        .shop-lead-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--secondary-color));
+        }
+        .shop-lead-title::after {
+            background: linear-gradient(90deg, var(--secondary-color), transparent);
+        }
+
+        /* ===========================
+           GRID
+        =========================== */
+        .shop-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+        @media (max-width: 680px) {
+            .shop-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+
+        /* ===========================
+           CARD
+        =========================== */
+        .shop-card {
+            background: #0d0d0d;
+            border: 1px solid #1e1e1e;
+            border-radius: 4px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
+            position: relative;
         }
-
+        .shop-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(230,0,0,0.5);
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.7),
+                0 0 25px rgba(230,0,0,0.12);
+        }
+        /* Top accent bar – animates on hover */
         .shop-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 4px;
-            background: var(--primary-color);
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
             transform: scaleX(0);
             transform-origin: left;
             transition: transform 0.4s ease;
         }
+        .shop-card:hover::before { transform: scaleX(1); }
 
-        .shop-card:hover {
-            transform: translateY(-10px);
-            border-color: #444;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 30px var(--primary-glow);
-        }
-
-        .shop-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        /* Card Carousel Controls */
-        .card-carousel-container {
+        /* ---- image carousel area ---- */
+        .card-carousel {
             position: relative;
             width: 100%;
-            height: 350px;
-            margin-bottom: 2.5rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            background: #070707;
+            /* let height be driven by image */
             overflow: hidden;
-        }
-
-        .card-carousel-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(20, 20, 20, 0.8);
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
-            width: 36px;
-            height: 36px;
-            font-size: 1.2rem;
             display: flex;
-            justify-content: center;
             align-items: center;
-            cursor: pointer;
-            border-radius: 50%;
-            transition: all 0.3s ease;
-            z-index: 10;
-            opacity: 0.7;
+            justify-content: center;
+            min-height: 200px;
         }
-
-        .card-carousel-nav:hover {
-            opacity: 1;
-            background: var(--primary-color);
-            color: #fff;
-            box-shadow: 0 0 10px var(--primary-glow);
-        }
-
-        .card-carousel-prev {
-            left: 10px;
-        }
-
-        .card-carousel-next {
-            right: 10px;
-        }
-
-        .card-carousel-dots {
-            position: absolute;
-            bottom: 5px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 8px;
-            z-index: 10;
-            background: rgba(0,0,0,0.5);
-            padding: 4px 8px;
-            border-radius: 10px;
-        }
-
-        .card-carousel-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.4);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .card-carousel-dot.active {
-            background: var(--secondary-color);
-            box-shadow: 0 0 8px var(--secondary-glow);
-            transform: scale(1.3);
-        }
-
-        .shop-card-image {
+        .card-carousel-img {
+            display: block;
             width: 100%;
-            height: 100%;
+            height: auto;
+            max-height: 420px;
             object-fit: contain;
-            transition: all 0.5s ease;
-            filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
-        }
-
-        .shop-card:hover .shop-card-image {
-            transform: scale(1.05);
-            filter: drop-shadow(0 0 20px var(--secondary-glow));
-        }
-
-        .shop-card-title {
-            font-size: 1.8rem;
-            color: #fff;
-            margin-bottom: 0.5rem;
-            font-family: var(--font-heading);
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 10px rgba(255,255,255,0.2);
-        }
-
-        .shop-notes {
-            background: linear-gradient(145deg, #111, #080808);
-            border-top: 1px solid #333;
-            border-bottom: 1px solid #333;
-            padding: 5rem 2rem;
-            text-align: center;
-            position: relative;
-        }
-
-        .shop-notes::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100px;
-            height: 3px;
-            background: var(--secondary-color);
-            box-shadow: 0 0 15px var(--secondary-glow);
-        }
-
-        .shop-notes-title {
-            font-size: 2rem;
-            color: var(--secondary-color);
-            margin-bottom: 1.5rem;
-            letter-spacing: 0.1em;
-            text-shadow: 0 0 10px var(--secondary-glow);
-        }
-
-        .shop-notes-text {
-            color: #ccc;
-            font-size: 1.1rem;
-            line-height: 2;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* Gallery Modal Styles */
-        .gallery-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 2000;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .gallery-modal.active {
-            display: flex;
-            opacity: 1;
-        }
-
-        .gallery-modal-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
-        }
-
-        .gallery-modal-content {
-            position: relative;
-            width: 90%;
-            max-width: 1200px;
-            margin: auto;
-            z-index: 2001;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .gallery-header {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1.5rem;
-            color: #fff;
-        }
-
-        #gallery-company-name {
-            font-size: 1.8rem;
-            font-family: var(--font-heading);
-            color: #fff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-            letter-spacing: 0.05em;
-        }
-
-        #gallery-counter {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--secondary-color);
-            letter-spacing: 0.1em;
-        }
-
-        .gallery-body {
-            position: relative;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gallery-image-container {
-            width: 100%;
-            height: 75vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        #gallery-image {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            transition: transform 0.5s ease, filter 0.5s ease;
             user-select: none;
             -webkit-user-drag: none;
         }
+        .shop-card:hover .card-carousel-img {
+            transform: scale(1.03);
+            filter: drop-shadow(0 0 16px rgba(255,215,0,0.2));
+        }
 
-        .gallery-nav {
+        /* Carousel arrows */
+        .carousel-arrow {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
-            background: rgba(20, 20, 20, 0.8);
-            color: #fff;
-            border: 2px solid var(--primary-color);
-            width: 60px;
-            height: 60px;
-            font-size: 1.8rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
+            width: 42px;
+            height: 42px;
+            background: rgba(10,10,10,0.75);
+            border: 1px solid rgba(230,0,0,0.6);
             border-radius: 50%;
-            transition: all 0.3s ease;
+            color: #fff;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             z-index: 10;
+            transition: all 0.25s ease;
+            opacity: 0;
+            backdrop-filter: blur(4px);
+        }
+        .shop-card:hover .carousel-arrow { opacity: 0.9; }
+        .carousel-arrow:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            opacity: 1 !important;
+            box-shadow: 0 0 14px var(--primary-glow);
+        }
+        .carousel-arrow.prev { left: 10px; }
+        .carousel-arrow.next { right: 10px; }
+
+        /* Dots */
+        .carousel-dots {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 7px;
+            z-index: 10;
+        }
+        .carousel-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.3);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+        .carousel-dot.active {
+            background: var(--secondary-color);
+            box-shadow: 0 0 8px var(--secondary-glow);
+            transform: scale(1.4);
+        }
+
+        /* "Click to expand" hint overlay */
+        .card-expand-hint {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 0.5rem 0;
+            text-align: center;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: rgba(255,255,255,0.55);
+            background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 5;
+            text-transform: uppercase;
+        }
+        .shop-card:hover .card-expand-hint { opacity: 1; }
+
+        /* ---- card info ---- */
+        .card-info {
+            padding: 1.4rem 1.8rem 1.8rem;
+            border-top: 1px solid #1a1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+        .card-name {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            color: #fff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-shadow: 0 0 8px rgba(255,255,255,0.1);
+            flex: 1;
+        }
+        .card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.35rem 0.85rem;
+            border: 1px solid rgba(255,215,0,0.35);
+            border-radius: 2px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--secondary-color);
+            white-space: nowrap;
+            background: rgba(255,215,0,0.05);
+            flex-shrink: 0;
+        }
+
+        /* ===========================
+           NOTES
+        =========================== */
+        .shop-notes-section {
+            margin-top: 6rem;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 4rem;
+        }
+        .shop-notes-box {
+            max-width: 760px;
+            margin: 0 auto;
+            background: #0a0a0a;
+            border: 1px solid #1e1e1e;
+            border-left: 3px solid var(--secondary-color);
+            border-radius: 4px;
+            padding: 2.2rem 2.8rem;
+        }
+        @media (max-width: 600px) {
+            .shop-notes-box { padding: 1.5rem 1.5rem; }
+        }
+        .shop-notes-box h2 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: var(--secondary-color);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .shop-notes-box p {
+            font-size: 0.95rem;
+            color: #aaa;
+            line-height: 2;
+        }
+        .shop-notes-box p + p { margin-top: 0.6rem; }
+
+        /* ===========================
+           MODAL
+        =========================== */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+        }
+        .gallery-modal.active { display: flex; }
+        .gallery-modal.active .gallery-modal-content {
+            animation: modalIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+        }
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.96) translateY(12px); }
+            to   { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .gallery-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.88);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .gallery-modal-content {
+            position: relative;
+            width: min(92vw, 1100px);
+            z-index: 1;
+            background: #0d0d0d;
+            border: 1px solid #2a2a2a;
+            border-top: 3px solid var(--primary-color);
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.9), 0 0 40px rgba(230,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .gallery-topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #1e1e1e;
+            background: #0a0a0a;
+            gap: 1rem;
+        }
+        .gallery-company {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: #fff;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+        .gallery-meta {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .gallery-counter-badge {
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--secondary-color);
+            background: rgba(255,215,0,0.08);
+            border: 1px solid rgba(255,215,0,0.25);
+            padding: 0.3rem 0.8rem;
+            border-radius: 2px;
+        }
+        .gallery-close {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            color: #aaa;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.25s ease;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .gallery-close:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
             box-shadow: 0 0 15px var(--primary-glow);
         }
-
-        .gallery-nav:hover {
-            background: var(--primary-color);
-            color: #fff;
-            box-shadow: 0 0 25px var(--primary-glow);
+        .gallery-image-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #060606;
+            min-height: 300px;
         }
-
-        .gallery-nav.prev {
-            left: -80px;
+        #gallery-img {
+            display: block;
+            max-width: 100%;
+            max-height: 72vh;
+            object-fit: contain;
+            user-select: none;
+            -webkit-user-drag: none;
         }
-
-        .gallery-nav.next {
-            right: -80px;
-        }
-
-        .gallery-modal-close {
+        .gallery-nav-btn {
             position: absolute;
-            top: -50px;
-            right: -20px;
-            background: transparent;
-            border: none;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 52px; height: 52px;
+            background: rgba(10,10,10,0.8);
+            border: 1px solid rgba(230,0,0,0.5);
+            border-radius: 50%;
             color: #fff;
-            font-size: 3.5rem;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            line-height: 1;
-            transition: color 0.3s ease, text-shadow 0.3s ease;
+            z-index: 10;
+            transition: all 0.25s ease;
+            backdrop-filter: blur(4px);
         }
-
-        .gallery-modal-close:hover {
-            color: var(--primary-color);
-            text-shadow: 0 0 15px var(--primary-glow);
+        .gallery-nav-btn:hover {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 20px var(--primary-glow);
         }
-
-        @media (max-width: 900px) {
-            .gallery-modal-content {
-                width: 100%;
-                padding: 0 15px;
-            }
-            .gallery-nav.prev {
-                left: 15px;
-            }
-            .gallery-nav.next {
-                right: 15px;
-            }
-            .gallery-modal-close {
-                top: 5px;
-                right: 15px;
-                z-index: 2002;
-            }
-            .gallery-header {
-                padding: 0 60px 0 10px; /* space for close button */
-                margin-top: 15px;
-            }
-            .gallery-image-container {
-                height: 65vh;
-            }
+        .gallery-nav-btn.prev { left: 16px; }
+        .gallery-nav-btn.next { right: 16px; }
+        .gallery-dots-wrap {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 1.1rem 1.5rem;
+            border-top: 1px solid #161616;
+            background: #080808;
+        }
+        .gallery-dot {
+            width: 9px; height: 9px;
+            border-radius: 50%;
+            background: #333;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border: 1px solid #444;
+        }
+        .gallery-dot.active {
+            background: var(--secondary-color);
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 10px var(--secondary-glow);
+            transform: scale(1.3);
+        }
+        @media (max-width: 600px) {
+            .gallery-nav-btn { width: 44px; height: 44px; font-size: 1rem; }
+            .gallery-nav-btn.prev { left: 8px; }
+            .gallery-nav-btn.next { right: 8px; }
+            .gallery-topbar { padding: 0.8rem 1rem; }
+            .gallery-company { font-size: 1.05rem; }
         }
     </style>
 </head>
 <body>
+
     <!-- HEADER -->
     <header class="header">
         <div class="header-container">
@@ -436,30 +528,32 @@
 
     <main>
         <!-- HERO -->
-        <section class="shop-hero fade-in">
-            <div class="container">
-                <h1 class="section-title">EXHIBITORS & SHOPS<span>当日の物販・出展情報</span></h1>
-                <a href="index.html" class="btn btn-secondary glow-gold shop-btn-back">TOPへ戻る</a>
+        <section class="shop-hero">
+            <div class="container shop-hero-inner">
+                <h1>EXHIBITORS & SHOPS<span>当日の物販・出展情報</span></h1>
+                <a href="index.html" class="btn-back">
+                    <svg viewBox="0 0 16 16"><path d="M11 1L4 8l7 7"/></svg>
+                    TOPへ戻る
+                </a>
             </div>
         </section>
 
         <!-- SHOPS LIST -->
         <section class="section">
             <div class="container">
-                <div class="shop-card-grid" id="shop-card-grid">
-                    <!-- Cards will be generated by JavaScript -->
+                <div class="shop-lead">
+                    <p class="shop-lead-title">出展企業一覧</p>
                 </div>
-            </div>
-        </section>
+                <div class="shop-grid" id="shop-card-grid"></div>
 
-        <!-- NOTES -->
-        <section class="shop-notes fade-in">
-            <div class="container">
-                <h2 class="shop-notes-title">注意事項</h2>
-                <p class="shop-notes-text">
-                    内容は予告なく変更となる場合があります。<br>
-                    販売方法・在庫状況につきましては各出展企業の案内をご確認ください。
-                </p>
+                <!-- NOTES -->
+                <div class="shop-notes-section fade-in">
+                    <div class="shop-notes-box">
+                        <h2>注意事項</h2>
+                        <p>内容は予告なく変更となる場合があります。</p>
+                        <p>販売方法・在庫状況につきましては各出展企業の案内をご確認ください。</p>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
@@ -481,27 +575,27 @@
     </footer>
 
     <!-- GALLERY MODAL -->
-    <div id="gallery-modal" class="gallery-modal">
-        <div class="gallery-modal-overlay"></div>
+    <div id="gallery-modal" class="gallery-modal" role="dialog" aria-modal="true">
+        <div class="gallery-overlay" id="gallery-overlay"></div>
         <div class="gallery-modal-content">
-            <button class="gallery-modal-close" aria-label="閉じる">&times;</button>
-            <div class="gallery-header">
-                <h3 id="gallery-company-name">企業名</h3>
-                <div id="gallery-counter">1 / 3</div>
-            </div>
-            <div class="gallery-body">
-                <button class="gallery-nav prev" aria-label="前の画像">&#10094;</button>
-                <div class="gallery-image-container">
-                    <img id="gallery-image" src="" alt="POP画像">
+            <div class="gallery-topbar">
+                <div class="gallery-meta">
+                    <span class="gallery-company" id="gallery-company-name"></span>
+                    <span class="gallery-counter-badge" id="gallery-counter"></span>
                 </div>
-                <button class="gallery-nav next" aria-label="次の画像">&#10095;</button>
+                <button class="gallery-close" id="gallery-close" aria-label="閉じる">&times;</button>
             </div>
+            <div class="gallery-image-wrap" id="gallery-image-wrap">
+                <button class="gallery-nav-btn prev" id="gallery-prev" aria-label="前の画像">&#10094;</button>
+                <img id="gallery-img" src="" alt="POP画像">
+                <button class="gallery-nav-btn next" id="gallery-next" aria-label="次の画像">&#10095;</button>
+            </div>
+            <div class="gallery-dots-wrap" id="gallery-dots"></div>
         </div>
     </div>
 
-    <!-- GALLERY SCRIPT -->
     <script>
-        // 画像データ構造
+        // ─── 画像データ ──────────────────────────────
         const companyImages = [
             {
                 name: "トレカキャンプ",
@@ -509,7 +603,7 @@
             },
             {
                 name: "カドラバ",
-                images: ["pop-B02.png"]
+                images: ["pop-B01.png"]
             },
             {
                 name: "DMMマイカ",
@@ -520,232 +614,192 @@
                 images: ["pop-D01.png"]
             }
         ];
+        // ────────────────────────────────────────────
 
         document.addEventListener('DOMContentLoaded', () => {
-            const grid = document.getElementById('shop-card-grid');
-            const modal = document.getElementById('gallery-modal');
-            const modalImg = document.getElementById('gallery-image');
-            const modalTitle = document.getElementById('gallery-company-name');
-            const modalCounter = document.getElementById('gallery-counter');
-            const modalBtnPrev = document.querySelector('.gallery-modal-content .gallery-nav.prev');
-            const modalBtnNext = document.querySelector('.gallery-modal-content .gallery-nav.next');
-            const btnClose = document.querySelector('.gallery-modal-close');
-            const overlay = document.querySelector('.gallery-modal-overlay');
+            const grid      = document.getElementById('shop-card-grid');
+            const modal     = document.getElementById('gallery-modal');
+            const modalImg  = document.getElementById('gallery-img');
+            const modalName = document.getElementById('gallery-company-name');
+            const modalCnt  = document.getElementById('gallery-counter');
+            const dotsWrap  = document.getElementById('gallery-dots');
+            const prevBtn   = document.getElementById('gallery-prev');
+            const nextBtn   = document.getElementById('gallery-next');
+            const closeBtn  = document.getElementById('gallery-close');
+            const overlay   = document.getElementById('gallery-overlay');
 
-            let currentCompanyIndex = -1;
-            let currentImageIndex = -1;
-            let cardStates = []; // Track currently displayed image index for each card
+            let curCo = -1, curImg = -1;
+            const cardStates = new Array(companyImages.length).fill(0);
 
-            // 1. カードの生成
-            grid.innerHTML = '';
-            companyImages.forEach((company, index) => {
-                cardStates[index] = 0;
-
+            // ── カード生成 ──────────────────────────
+            companyImages.forEach((co, ci) => {
                 const card = document.createElement('div');
                 card.className = 'shop-card fade-in';
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-                
-                // カード全体をクリックしたらモーダルを開く（スワイプによるクリックは後で防止）
-                card.onclick = (e) => {
-                    openGallery(index, cardStates[index]);
-                };
+                card.onclick = () => openModal(ci, cardStates[ci]);
 
-                const carouselContainer = document.createElement('div');
-                carouselContainer.className = 'card-carousel-container';
+                // ── carousel ──
+                const carousel = document.createElement('div');
+                carousel.className = 'card-carousel';
 
                 const img = document.createElement('img');
-                img.src = company.images[0];
-                img.alt = company.name;
-                img.className = 'shop-card-image';
-                carouselContainer.appendChild(img);
+                img.src = co.images[0];
+                img.alt = co.name;
+                img.className = 'card-carousel-img';
+                img.draggable = false;
+                carousel.appendChild(img);
 
-                // 画像が複数ある場合はカード内に左右矢印とドットナビゲーションを配置
-                if (company.images.length > 1) {
-                    // 左矢印
-                    const prevBtn = document.createElement('button');
-                    prevBtn.className = 'card-carousel-nav card-carousel-prev';
-                    prevBtn.innerHTML = '&#10094;';
-                    prevBtn.onclick = (e) => {
-                        e.stopPropagation(); // モーダルを開かない
-                        cardStates[index] = (cardStates[index] - 1 + company.images.length) % company.images.length;
-                        updateCardImage(index, carouselContainer, company);
-                    };
-                    
-                    // 右矢印
-                    const nextBtn = document.createElement('button');
-                    nextBtn.className = 'card-carousel-nav card-carousel-next';
-                    nextBtn.innerHTML = '&#10095;';
-                    nextBtn.onclick = (e) => {
-                        e.stopPropagation(); // モーダルを開かない
-                        cardStates[index] = (cardStates[index] + 1) % company.images.length;
-                        updateCardImage(index, carouselContainer, company);
-                    };
-
-                    // ドットインジケーター
-                    const dotsContainer = document.createElement('div');
-                    dotsContainer.className = 'card-carousel-dots';
-                    company.images.forEach((_, i) => {
-                        const dot = document.createElement('div');
-                        dot.className = 'card-carousel-dot' + (i === 0 ? ' active' : '');
-                        dot.onclick = (e) => {
-                            e.stopPropagation(); // モーダルを開かない
-                            cardStates[index] = i;
-                            updateCardImage(index, carouselContainer, company);
-                        };
-                        dotsContainer.appendChild(dot);
-                    });
-
-                    carouselContainer.appendChild(prevBtn);
-                    carouselContainer.appendChild(nextBtn);
-                    carouselContainer.appendChild(dotsContainer);
-
-                    // カードのスワイプ操作対応
-                    let touchStartX = 0;
-                    let touchEndX = 0;
-                    
-                    carouselContainer.addEventListener('touchstart', (e) => {
-                        touchStartX = e.changedTouches[0].screenX;
-                    }, {passive: true});
-
-                    carouselContainer.addEventListener('touchend', (e) => {
-                        touchEndX = e.changedTouches[0].screenX;
-                        const diff = touchStartX - touchEndX;
-                        
-                        if (Math.abs(diff) > 40) {
-                            if (diff > 0) {
-                                // 左へスワイプ -> 次の画像
-                                cardStates[index] = (cardStates[index] + 1) % company.images.length;
-                            } else {
-                                // 右へスワイプ -> 前の画像
-                                cardStates[index] = (cardStates[index] - 1 + company.images.length) % company.images.length;
-                            }
-                            updateCardImage(index, carouselContainer, company);
-                        }
-                    }, {passive: true});
-                    
-                    // スワイプ後の意図しないクリックを防ぐ
-                    carouselContainer.addEventListener('click', (e) => {
-                        if (Math.abs(touchStartX - touchEndX) > 40) {
+                if (co.images.length > 1) {
+                    // arrows
+                    const makeArrow = (dir) => {
+                        const btn = document.createElement('button');
+                        btn.className = `carousel-arrow ${dir}`;
+                        btn.innerHTML = dir === 'prev' ? '&#10094;' : '&#10095;';
+                        btn.setAttribute('aria-label', dir === 'prev' ? '前の画像' : '次の画像');
+                        btn.onclick = (e) => {
                             e.stopPropagation();
-                        }
-                        // リセット
-                        touchStartX = 0;
-                        touchEndX = 0;
+                            const len = co.images.length;
+                            cardStates[ci] = dir === 'prev'
+                                ? (cardStates[ci] - 1 + len) % len
+                                : (cardStates[ci] + 1) % len;
+                            syncCard(ci, carousel, co);
+                        };
+                        return btn;
+                    };
+                    carousel.appendChild(makeArrow('prev'));
+                    carousel.appendChild(makeArrow('next'));
+
+                    // dots
+                    const dotsEl = document.createElement('div');
+                    dotsEl.className = 'carousel-dots';
+                    co.images.forEach((_, ii) => {
+                        const d = document.createElement('div');
+                        d.className = 'carousel-dot' + (ii === 0 ? ' active' : '');
+                        d.onclick = (e) => {
+                            e.stopPropagation();
+                            cardStates[ci] = ii;
+                            syncCard(ci, carousel, co);
+                        };
+                        dotsEl.appendChild(d);
                     });
+                    carousel.appendChild(dotsEl);
+
+                    // swipe on card
+                    let tx = 0;
+                    carousel.addEventListener('touchstart', e => { tx = e.changedTouches[0].screenX; }, {passive:true});
+                    carousel.addEventListener('touchend', e => {
+                        const diff = tx - e.changedTouches[0].screenX;
+                        if (Math.abs(diff) > 40) {
+                            const len = co.images.length;
+                            cardStates[ci] = diff > 0
+                                ? (cardStates[ci] + 1) % len
+                                : (cardStates[ci] - 1 + len) % len;
+                            syncCard(ci, carousel, co);
+                        }
+                        e.stopPropagation();
+                    }, {passive:true});
                 }
 
-                const title = document.createElement('h3');
-                title.className = 'shop-card-title';
-                title.textContent = company.name;
+                // expand hint
+                const hint = document.createElement('div');
+                hint.className = 'card-expand-hint';
+                hint.textContent = 'クリックで拡大 →';
+                carousel.appendChild(hint);
 
-                card.appendChild(carouselContainer);
-                card.appendChild(title);
+                // ── card info ──
+                const info = document.createElement('div');
+                info.className = 'card-info';
 
+                const name = document.createElement('div');
+                name.className = 'card-name';
+                name.textContent = co.name;
+
+                const badge = document.createElement('div');
+                badge.className = 'card-badge';
+                badge.innerHTML = `<svg width="12" height="12" viewBox="0 0 16 16" fill="currentColor"><path d="M1 3h14v10H1z M0 2a1 1 0 011-1h14a1 1 0 011 1v12a1 1 0 01-1 1H1a1 1 0 01-1-1V2z"/></svg> POP`;
+
+                info.appendChild(name);
+                info.appendChild(badge);
+
+                card.appendChild(carousel);
+                card.appendChild(info);
                 grid.appendChild(card);
             });
 
-            // カード内の画像とドットを更新する関数
-            function updateCardImage(index, container, company) {
-                const img = container.querySelector('.shop-card-image');
-                img.src = company.images[cardStates[index]];
-                
-                const dots = container.querySelectorAll('.card-carousel-dot');
-                if (dots.length > 0) {
-                    dots.forEach(d => d.classList.remove('active'));
-                    dots[cardStates[index]].classList.add('active');
-                }
+            // ── カード画像・ドット同期 ──────────────
+            function syncCard(ci, carousel, co) {
+                carousel.querySelector('.card-carousel-img').src = co.images[cardStates[ci]];
+                carousel.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                    d.classList.toggle('active', i === cardStates[ci]);
+                });
             }
 
-            // 2. モーダル操作
-            function openGallery(companyIndex, startIndex = 0) {
-                currentCompanyIndex = companyIndex;
-                currentImageIndex = startIndex;
-                updateGallery();
+            // ── モーダル ────────────────────────────
+            function openModal(ci, startIdx = 0) {
+                curCo = ci; curImg = startIdx;
+                refreshModal();
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
 
-            function closeGallery() {
+            function closeModal() {
                 modal.classList.remove('active');
                 document.body.style.overflow = '';
             }
 
-            function updateGallery() {
-                const company = companyImages[currentCompanyIndex];
-                modalImg.src = company.images[currentImageIndex];
-                modalTitle.textContent = company.name;
-                modalCounter.textContent = `${currentImageIndex + 1} / ${company.images.length}`;
+            function refreshModal() {
+                const co = companyImages[curCo];
+                modalImg.src = co.images[curImg];
+                modalName.textContent = co.name;
+                modalCnt.textContent  = `${curImg + 1} / ${co.images.length}`;
 
-                if (company.images.length > 1) {
-                    modalBtnPrev.style.display = 'flex';
-                    modalBtnNext.style.display = 'flex';
-                } else {
-                    modalBtnPrev.style.display = 'none';
-                    modalBtnNext.style.display = 'none';
+                const multi = co.images.length > 1;
+                prevBtn.style.display = multi ? 'flex' : 'none';
+                nextBtn.style.display = multi ? 'flex' : 'none';
+
+                // rebuild modal dots
+                dotsWrap.innerHTML = '';
+                if (multi) {
+                    co.images.forEach((_, i) => {
+                        const d = document.createElement('div');
+                        d.className = 'gallery-dot' + (i === curImg ? ' active' : '');
+                        d.onclick = () => { curImg = i; refreshModal(); };
+                        dotsWrap.appendChild(d);
+                    });
                 }
-                
-                // モーダルと連動して背景のカード状態も更新しておく
-                cardStates[currentCompanyIndex] = currentImageIndex;
-                const activeCard = grid.children[currentCompanyIndex];
-                const carouselContainer = activeCard.querySelector('.card-carousel-container');
-                updateCardImage(currentCompanyIndex, carouselContainer, company);
+
+                // sync card state
+                cardStates[curCo] = curImg;
+                const carousel = grid.children[curCo].querySelector('.card-carousel');
+                if (carousel) syncCard(curCo, carousel, co);
             }
 
-            function showPrevModal() {
-                const company = companyImages[currentCompanyIndex];
-                if (company.images.length <= 1) return;
-                currentImageIndex = (currentImageIndex - 1 + company.images.length) % company.images.length;
-                updateGallery();
+            function step(dir) {
+                const len = companyImages[curCo].images.length;
+                curImg = (curImg + dir + len) % len;
+                refreshModal();
             }
 
-            function showNextModal() {
-                const company = companyImages[currentCompanyIndex];
-                if (company.images.length <= 1) return;
-                currentImageIndex = (currentImageIndex + 1) % company.images.length;
-                updateGallery();
-            }
+            closeBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', closeModal);
+            prevBtn.addEventListener('click', () => step(-1));
+            nextBtn.addEventListener('click', () => step(1));
 
-            btnClose.addEventListener('click', closeGallery);
-            overlay.addEventListener('click', closeGallery);
-            modalBtnPrev.addEventListener('click', showPrevModal);
-            modalBtnNext.addEventListener('click', showNextModal);
-
-            document.addEventListener('keydown', (e) => {
+            document.addEventListener('keydown', e => {
                 if (!modal.classList.contains('active')) return;
-                if (e.key === 'Escape') closeGallery();
-                if (e.key === 'ArrowLeft') showPrevModal();
-                if (e.key === 'ArrowRight') showNextModal();
+                if (e.key === 'Escape')     closeModal();
+                if (e.key === 'ArrowLeft')  step(-1);
+                if (e.key === 'ArrowRight') step(1);
             });
 
-            // 3. モーダル上のスマホ向けスワイプ操作
-            let modalTouchStartX = 0;
-            let modalTouchEndX = 0;
-            const swipeThreshold = 50;
-
-            const modalBody = document.querySelector('.gallery-body');
-
-            modalBody.addEventListener('touchstart', (e) => {
-                modalTouchStartX = e.changedTouches[0].screenX;
-            }, {passive: true});
-
-            modalBody.addEventListener('touchend', (e) => {
-                modalTouchEndX = e.changedTouches[0].screenX;
-                handleModalSwipe();
-            }, {passive: true});
-
-            function handleModalSwipe() {
-                if (!modal.classList.contains('active')) return;
-                const company = companyImages[currentCompanyIndex];
-                if (company.images.length <= 1) return;
-
-                if (modalTouchEndX < modalTouchStartX - swipeThreshold) {
-                    showNextModal();
-                }
-                if (modalTouchEndX > modalTouchStartX + swipeThreshold) {
-                    showPrevModal();
-                }
-            }
+            // modal swipe
+            let mx = 0;
+            document.getElementById('gallery-image-wrap').addEventListener('touchstart', e => {
+                mx = e.changedTouches[0].screenX;
+            }, {passive:true});
+            document.getElementById('gallery-image-wrap').addEventListener('touchend', e => {
+                const diff = mx - e.changedTouches[0].screenX;
+                if (Math.abs(diff) > 50) step(diff > 0 ? 1 : -1);
+            }, {passive:true});
         });
     </script>
 </body>
