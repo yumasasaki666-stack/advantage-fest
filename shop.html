@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="アドフェスの物販・出展情報">
+    <title>EXHIBITORS & SHOPS | アドフェス</title>
+    <link rel="icon" href="favicon.png" type="image/png">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="script.js" defer></script>
+    <style>
+        /* Shop specific styles */
+        .shop-hero {
+            padding: 160px 0 80px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(20,0,0,0.9) 0%, rgba(5,5,5,0.95) 100%);
+            border-bottom: 2px solid var(--primary-color);
+            position: relative;
+        }
+        
+        .shop-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('logo.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 800px;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .shop-hero .section-title {
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+            font-size: 4rem;
+        }
+
+        .shop-btn-back {
+            margin-top: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .shop-card-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 4rem;
+            margin-top: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .shop-card-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .shop-card-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 5rem 4rem;
+                padding: 0 4rem;
+            }
+        }
+
+        .shop-card {
+            background: linear-gradient(145deg, #161616, #0d0d0d);
+            border: 1px solid #222;
+            padding: 3rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            clip-path: polygon(20px 0, 100% 0, 100% calc(100% - 20px), calc(100% - 20px) 100%, 0 100%, 0 20px);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .shop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-10px);
+            border-color: #444;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 30px var(--primary-glow);
+        }
+
+        .shop-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .shop-card-image-container {
+            width: 100%;
+            height: 350px;
+            margin-bottom: 2.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .shop-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            transition: all 0.5s ease;
+            filter: drop-shadow(0 0 15px rgba(0,0,0,0.6));
+        }
+
+        .shop-card:hover .shop-card-image {
+            transform: scale(1.05);
+            filter: drop-shadow(0 0 20px var(--secondary-glow));
+        }
+
+        .shop-card-title {
+            font-size: 1.8rem;
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-family: var(--font-heading);
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .shop-notes {
+            background: linear-gradient(145deg, #111, #080808);
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+            padding: 5rem 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .shop-notes::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: var(--secondary-color);
+            box-shadow: 0 0 15px var(--secondary-glow);
+        }
+
+        .shop-notes-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            letter-spacing: 0.1em;
+            text-shadow: 0 0 10px var(--secondary-glow);
+        }
+
+        .shop-notes-text {
+            color: #ccc;
+            font-size: 1.1rem;
+            line-height: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Gallery Modal Styles */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .gallery-modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .gallery-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1200px;
+            margin: auto;
+            z-index: 2001;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .gallery-header {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            color: #fff;
+        }
+
+        #gallery-company-name {
+            font-size: 1.8rem;
+            font-family: var(--font-heading);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.05em;
+        }
+
+        #gallery-counter {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+            letter-spacing: 0.1em;
+        }
+
+        .gallery-body {
+            position: relative;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-image-container {
+            width: 100%;
+            height: 75vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #gallery-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(20, 20, 20, 0.8);
+            color: #fff;
+            border: 2px solid var(--primary-color);
+            width: 60px;
+            height: 60px;
+            font-size: 1.8rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            z-index: 10;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .gallery-nav:hover {
+            background: var(--primary-color);
+            color: #fff;
+            box-shadow: 0 0 25px var(--primary-glow);
+        }
+
+        .gallery-nav.prev {
+            left: -80px;
+        }
+
+        .gallery-nav.next {
+            right: -80px;
+        }
+
+        .gallery-modal-close {
+            position: absolute;
+            top: -50px;
+            right: -20px;
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 3.5rem;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .gallery-modal-close:hover {
+            color: var(--primary-color);
+            text-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        @media (max-width: 900px) {
+            .gallery-modal-content {
+                width: 100%;
+                padding: 0 15px;
+            }
+            .gallery-nav.prev {
+                left: 15px;
+            }
+            .gallery-nav.next {
+                right: 15px;
+            }
+            .gallery-modal-close {
+                top: 5px;
+                right: 15px;
+                z-index: 2002;
+            }
+            .gallery-header {
+                padding: 0 60px 0 10px; /* space for close button */
+                margin-top: 15px;
+            }
+            .gallery-image-container {
+                height: 65vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="header-container">
+            <h1 class="logo">
+                <a href="index.html"><img src="logo.png" alt="ADVANTAGE FEST" class="header-logo-img"></a>
+            </h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html#about">ABOUT</a></li>
+                    <li><a href="index.html#event">EVENT</a></li>
+                    <li><a href="index.html#guest">GUEST</a></li>
+                    <li><a href="index.html#schedule">SCHEDULE</a></li>
+                    <li><a href="shop.html">SHOPS</a></li>
+                    <li><a href="index.html#access">ACCESS</a></li>
+                    <li><a href="index.html#sponsor">SPONSOR</a></li>
+                    <li><a href="index.html#faq">FAQ</a></li>
+                </ul>
+            </nav>
+            <div class="menu-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="shop-hero fade-in">
+            <div class="container">
+                <h1 class="section-title">EXHIBITORS & SHOPS<span>当日の物販・出展情報</span></h1>
+                <a href="index.html" class="btn btn-secondary glow-gold shop-btn-back">TOPへ戻る</a>
+            </div>
+        </section>
+
+        <!-- SHOPS LIST -->
+        <section class="section">
+            <div class="container">
+                <div class="shop-card-grid" id="shop-card-grid">
+                    <!-- Cards will be generated by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- NOTES -->
+        <section class="shop-notes fade-in">
+            <div class="container">
+                <h2 class="shop-notes-title">注意事項</h2>
+                <p class="shop-notes-text">
+                    内容は予告なく変更となる場合があります。<br>
+                    販売方法・在庫状況につきましては各出展企業の案内をご確認ください。
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-logo-container">
+                <img src="logo.png" alt="ADVANTAGE FEST" class="footer-logo-img">
+            </div>
+            <div class="footer-links">
+                <a href="index.html">TOP</a>
+                <a href="#">プライバシーポリシー</a>
+                <a href="#">利用規約</a>
+                <a href="#">運営会社</a>
+            </div>
+            <p class="copyright">&copy; 2026 アドフェス All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- GALLERY MODAL -->
+    <div id="gallery-modal" class="gallery-modal">
+        <div class="gallery-modal-overlay"></div>
+        <div class="gallery-modal-content">
+            <button class="gallery-modal-close" aria-label="閉じる">&times;</button>
+            <div class="gallery-header">
+                <h3 id="gallery-company-name">企業名</h3>
+                <div id="gallery-counter">1 / 3</div>
+            </div>
+            <div class="gallery-body">
+                <button class="gallery-nav prev" aria-label="前の画像">&#10094;</button>
+                <div class="gallery-image-container">
+                    <img id="gallery-image" src="" alt="POP画像">
+                </div>
+                <button class="gallery-nav next" aria-label="次の画像">&#10095;</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- GALLERY SCRIPT -->
+    <script>
+        // 画像データ構造
+        const companyImages = [
+            {
+                name: "トレカキャンプ",
+                images: ["pop-A01.png", "pop-A02.png", "pop-A03.png"]
+            },
+            {
+                name: "カドラバ",
+                images: ["pop-B01.png"]
+            },
+            {
+                name: "DMMマイカ",
+                images: ["pop-C01.png", "pop-C02.jpg"]
+            },
+            {
+                name: "TOYGER",
+                images: ["pop-04.png"]
+            }
+        ];
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const grid = document.getElementById('shop-card-grid');
+            const modal = document.getElementById('gallery-modal');
+            const modalImg = document.getElementById('gallery-image');
+            const modalTitle = document.getElementById('gallery-company-name');
+            const modalCounter = document.getElementById('gallery-counter');
+            const btnPrev = document.querySelector('.gallery-nav.prev');
+            const btnNext = document.querySelector('.gallery-nav.next');
+            const btnClose = document.querySelector('.gallery-modal-close');
+            const overlay = document.querySelector('.gallery-modal-overlay');
+
+            let currentCompanyIndex = -1;
+            let currentImageIndex = -1;
+
+            // 1. カードの生成
+            grid.innerHTML = '';
+            companyImages.forEach((company, index) => {
+                const card = document.createElement('div');
+                card.className = 'shop-card fade-in';
+                card.style.opacity = '1'; // Ensure visible when dynamically added
+                card.style.transform = 'translateY(0)';
+                card.onclick = () => openGallery(index);
+
+                const imgContainer = document.createElement('div');
+                imgContainer.className = 'shop-card-image-container';
+                const img = document.createElement('img');
+                img.src = company.images[0]; // 代表画像
+                img.alt = company.name;
+                img.className = 'shop-card-image';
+                imgContainer.appendChild(img);
+
+                const title = document.createElement('h3');
+                title.className = 'shop-card-title';
+                title.textContent = company.name;
+
+                card.appendChild(imgContainer);
+                card.appendChild(title);
+
+                grid.appendChild(card);
+            });
+
+            // 2. モーダル操作
+            function openGallery(companyIndex) {
+                currentCompanyIndex = companyIndex;
+                currentImageIndex = 0;
+                updateGallery();
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // 背後のスクロールを防止
+            }
+
+            function closeGallery() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+
+            function updateGallery() {
+                const company = companyImages[currentCompanyIndex];
+                modalImg.src = company.images[currentImageIndex];
+                modalTitle.textContent = company.name;
+                modalCounter.textContent = `${currentImageIndex + 1} / ${company.images.length}`;
+
+                // 画像が1枚の場合は矢印を非表示
+                if (company.images.length > 1) {
+                    btnPrev.style.display = 'flex';
+                    btnNext.style.display = 'flex';
+                } else {
+                    btnPrev.style.display = 'none';
+                    btnNext.style.display = 'none';
+                }
+            }
+
+            function showPrev() {
+                const company = companyImages[currentCompanyIndex];
+                if (company.images.length <= 1) return;
+                currentImageIndex = (currentImageIndex - 1 + company.images.length) % company.images.length;
+                updateGallery();
+            }
+
+            function showNext() {
+                const company = companyImages[currentCompanyIndex];
+                if (company.images.length <= 1) return;
+                currentImageIndex = (currentImageIndex + 1) % company.images.length;
+                updateGallery();
+            }
+
+            // イベントリスナー登録
+            btnClose.addEventListener('click', closeGallery);
+            overlay.addEventListener('click', closeGallery);
+            btnPrev.addEventListener('click', showPrev);
+            btnNext.addEventListener('click', showNext);
+
+            // キーボード操作 (ESCで閉じる、左右で切り替え)
+            document.addEventListener('keydown', (e) => {
+                if (!modal.classList.contains('active')) return;
+                if (e.key === 'Escape') closeGallery();
+                if (e.key === 'ArrowLeft') showPrev();
+                if (e.key === 'ArrowRight') showNext();
+            });
+
+            // 3. スマホ向けスワイプ操作
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const swipeThreshold = 50;
+
+            const modalBody = document.querySelector('.gallery-body');
+
+            modalBody.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, {passive: true});
+
+            modalBody.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, {passive: true});
+
+            function handleSwipe() {
+                if (!modal.classList.contains('active')) return;
+                const company = companyImages[currentCompanyIndex];
+                if (company.images.length <= 1) return;
+
+                if (touchEndX < touchStartX - swipeThreshold) {
+                    showNext(); // 左スワイプ -> 次へ
+                }
+                if (touchEndX > touchStartX + swipeThreshold) {
+                    showPrev(); // 右スワイプ -> 前へ
+                }
+            }
+        });
+    </script>
+</body>
+</html>
