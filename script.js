@@ -101,13 +101,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     "ポケカバトルファクトリー": `
                         <li><strong>形式：</strong>レンタルデッキ対戦</li>
                         <li><strong>所要時間：</strong>約80分</li>
-                        <li><strong>参加費：</strong>イベントチケット2枚</li>
+                        <li><strong>参加費：</strong>イベントチケット2枚（1枚300円）</li>
                         <li><strong>対象：</strong>初心者OK</li>
                     `,
                     "スリーストリークバトル": `
                         <li><strong>形式：</strong>ガンスリンガー</li>
                         <li><strong>所要時間：</strong>25～80分（連勝数で変化）</li>
-                        <li><strong>参加費：</strong>イベントチケット1枚</li>
+                        <li><strong>参加費：</strong>イベントチケット1枚（1枚300円）</li>
                     `,
                     "ゆびをふるポケカ体験": `
                         <li><strong>形式：</strong>カジュアルバトル</li>
