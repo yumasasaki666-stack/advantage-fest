@@ -206,7 +206,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             <li><span class="prize-rank">1勝</span><span class="prize-desc">拡張パック「アビスアイ」1パック</span></li>
                             <li><span class="prize-rank">2勝</span><span class="prize-desc">拡張パック「アビスアイ」＋2パック</span></li>
                             <li><span class="prize-rank">3勝</span><span class="prize-desc">拡張パック「アビスアイ」＋4パック<br>
-                                <span style="font-size: 0.85em; color: var(--text-muted);">※3勝時合計7パック<br>※小学生以下のお子様のみ、0勝時でも参加賞として1パックさしあげます</span>
+                                <span style="font-size: 0.85em; color: var(--text-muted);">※3勝時合計7パック<br>※小学生以下のお子様には参加賞として1パックをお渡しいたします</span>
                             </span></li>
                         </ul>
                     `;
