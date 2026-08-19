@@ -145,6 +145,12 @@ button, summary { font: inherit; }
 .prize-row small { font-family: "Barlow Condensed"; font-weight: 900; letter-spacing: .14em; }
 .prize-row strong { margin: 8px 0 4px; font-family: "Barlow Condensed"; font-size: 34px; }
 .prize-row span { font-size: 12px; font-weight: 700; }
+.more-benefit-lead { display: flex; align-items: center; gap: 20px; margin: 72px 0 18px; }
+.more-benefit-lead::after { height: 2px; flex: 1; background: var(--ink); content: ""; }
+.more-benefit-lead span { padding: 7px 10px; color: var(--yellow); background: var(--ink); font-family: "Barlow Condensed"; font-size: 12px; font-weight: 900; letter-spacing: .14em; }
+.more-benefit-lead strong { font-size: clamp(38px,4.8vw,70px); line-height: 1; letter-spacing: -.07em; }
+.tournament-benefit { overflow: hidden; border: 2px solid var(--ink); background: #fff; }
+.tournament-benefit .kadoraba-copy { background: #fff; }
 .tournament-entry { min-height: 130px; display: flex; align-items: center; justify-content: space-between; gap: 40px; padding: 30px 0 0; }
 .tournament-entry p { display: flex; align-items: center; gap: 24px; }
 .tournament-entry p b { font-family: "Barlow Condensed"; font-size: 24px; letter-spacing: .1em; }
@@ -228,13 +234,13 @@ button, summary { font: inherit; }
 .sponsors { color: #fff; background: var(--ink); }
 .sponsors .section-kicker { color: var(--yellow); }
 .sponsors > h2 { margin: 0 0 70px; font-size: clamp(55px,6vw,90px); line-height: 1.05; letter-spacing: -.065em; }
-.kadoraba-feature { overflow: hidden; border: 1px solid #343434; background: #050505; }
 .kadoraba-brand { min-height: 190px; position: relative; display: grid; place-items: center; background: var(--yellow); }
 .kadoraba-brand > span { position: absolute; top: 18px; left: 20px; color: var(--ink); font-family: "Barlow Condensed"; font-size: 12px; font-weight: 900; letter-spacing: .15em; }
 .kadoraba-brand > img { width: min(560px,70%); max-height: 150px; object-fit: cover; }
 .kadoraba-campaign { display: grid; grid-template-columns: minmax(0,.86fr) minmax(460px,1.14fr); min-height: 590px; color: var(--ink); background: var(--yellow); }
 .kadoraba-copy { display: flex; flex-direction: column; justify-content: center; padding: 70px 5vw; }
 .kadoraba-copy > p { margin: 0 0 22px; font-family: "Barlow Condensed"; font-size: 13px; font-weight: 900; letter-spacing: .18em; }
+.kadoraba-copy > p b { display: block; margin-top: 7px; color: #5a4b00; font-size: 11px; letter-spacing: .12em; }
 .kadoraba-copy h3 { margin: 0; font-size: clamp(47px,5.2vw,78px); line-height: .96; letter-spacing: -.065em; }
 .kadoraba-copy h3 em { display: inline-block; position: relative; z-index: 0; font-style: normal; }
 .kadoraba-copy h3 em::after { height: 12px; position: absolute; z-index: -1; right: 0; bottom: 1px; left: 0; background: #fff; content: ""; }
@@ -360,6 +366,9 @@ footer small { justify-self: end; }
   .prize-row > div:nth-child(2) { border-right: 0; }
   .prize-row > div:nth-last-child(-n+2) { border-bottom: 0; }
   .prize-row strong { font-size: 27px; }
+  .more-benefit-lead { gap: 12px; margin: 54px 0 14px; }
+  .more-benefit-lead strong { font-size: 43px; }
+  .more-benefit-lead span { padding: 6px 8px; font-size: 10px; }
   .tournament-entry { align-items: stretch; flex-direction: column; gap: 12px; padding: 30px 0 0; }
   .tournament-entry p { align-items: flex-start; flex-direction: column; gap: 4px; }
   .button-dark { width: 100%; }
