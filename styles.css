@@ -236,7 +236,7 @@ button, summary { font: inherit; }
 .sponsors > h2 { margin: 0 0 70px; font-size: clamp(55px,6vw,90px); line-height: 1.05; letter-spacing: -.065em; }
 .kadoraba-brand { min-height: 190px; position: relative; display: grid; place-items: center; background: var(--yellow); }
 .kadoraba-brand > span { position: absolute; top: 18px; left: 20px; color: var(--ink); font-family: "Barlow Condensed"; font-size: 12px; font-weight: 900; letter-spacing: .15em; }
-.kadoraba-brand > img { width: min(560px,70%); max-height: 150px; object-fit: cover; }
+.kadoraba-brand > img { width: min(560px,72%); height: auto; object-fit: contain; }
 .kadoraba-campaign { display: grid; grid-template-columns: minmax(0,.86fr) minmax(460px,1.14fr); min-height: 590px; color: var(--ink); background: var(--yellow); }
 .kadoraba-copy { display: flex; flex-direction: column; justify-content: center; padding: 70px 5vw; }
 .kadoraba-copy > p { margin: 0 0 22px; font-family: "Barlow Condensed"; font-size: 13px; font-weight: 900; letter-spacing: .18em; }
@@ -403,7 +403,7 @@ footer small { justify-self: end; }
   .venue-map-detail > div { padding: 14px; }
   .sponsors > h2 { font-size: 51px; }
   .kadoraba-brand { min-height: 145px; }
-  .kadoraba-brand > img { width: 82%; max-height: 110px; }
+  .kadoraba-brand > img { width: 82%; height: auto; }
   .kadoraba-campaign { grid-template-columns: 1fr; min-height: 0; }
   .kadoraba-copy { padding: 48px 22px 42px; }
   .kadoraba-copy h3 { font-size: 47px; }
