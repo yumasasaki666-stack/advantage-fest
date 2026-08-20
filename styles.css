@@ -77,9 +77,9 @@ button, summary { font: inherit; }
 .hero-info-rail div { display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 20px 36px; border-right: 1px solid rgba(255,255,255,.17); }
 .hero-info-rail small { font-family: "Barlow Condensed"; color: #999; font-size: 11px; font-weight: 800; letter-spacing: .19em; }
 .hero-info-rail strong { font-size: 16px; }
-.hero-info-rail .free-info { background: var(--red); }
-.hero-info-rail .free-info small { color: rgba(255,255,255,.7); }
-.hero-info-rail .free-info strong { font-size: 26px; }
+.hero-info-rail .visitor-info { background: var(--red); }
+.hero-info-rail .visitor-info small { color: rgba(255,255,255,.7); }
+.hero-info-rail .visitor-info strong { font-size: 26px; }
 
 .section-pad { position: relative; padding: 150px max(6vw,54px); }
 .section-index { position: absolute; top: 50px; left: max(6vw,54px); font-family: "Barlow Condensed"; font-size: 12px; font-weight: 800; letter-spacing: .18em; }
@@ -370,7 +370,7 @@ footer small { justify-self: end; }
   .hero-info-rail div { padding: 15px; }
   .hero-info-rail div:first-child { grid-column: 1/-1; }
   .hero-info-rail strong { font-size: 12px; }
-  .hero-info-rail .free-info strong { font-size: 18px; }
+  .hero-info-rail .visitor-info strong { font-size: 18px; }
   .section-pad { padding: 110px 18px; }
   .section-index { top: 32px; left: 18px; }
   .section-kicker { font-size: 11px; }
