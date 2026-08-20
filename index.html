@@ -307,9 +307,19 @@
 <ul class="event-detail-list event-detail-prizes">
 <li><b>0勝（参加賞）</b><span>「30th CELEBRATION」×1パック</span></li>
 <li><b>1勝</b><span>「30th CELEBRATION」×1パック ＋ 「ストームエメラルダ」×1パック</span></li>
-<li><b>2勝</b><span>「30th CELEBRATION」×1パック ＋ 「ストームエメラルダ」×1パック</span></li>
-<li><b>3勝</b><span>「30th CELEBRATION」×1パック ＋ 「ストームエメラルダ」×2パック</span></li>
+<li><b>2勝</b><span>「30th CELEBRATION」×1パック ＋ 「ストームエメラルダ」×1パック<strong class="factory-special-prize"><small>協賛品</small>FUMOTEX ×1個</strong></span></li>
+<li><b>3勝</b><span>「30th CELEBRATION」×1パック ＋ 「ストームエメラルダ」×2パック<strong class="factory-special-prize"><small>協賛品</small>FUMOTEX ×1個</strong></span></li>
 </ul>
+<a class="event-sponsor-promo" href="https://www.fumotcg.com/collections/fumotex" target="_blank" rel="noreferrer" aria-label="FUMOTEXの商品一覧を見る">
+<span class="event-sponsor-promo-head">
+<span><small>SPONSORED PRODUCT</small><b>2勝以上でFUMOTEXをプレゼント</b></span>
+<span class="event-sponsor-promo-action">商品を見る</span>
+</span>
+<picture>
+<source media="(min-width: 700px)" srcset="assets/fumotex-promo-pc.webp"/>
+<img src="assets/fumotex-promo-sp.webp" alt="FUMOTEX 本格競技用スリーブ DUAL・SINGLE 全28色" loading="lazy" decoding="async"/>
+</picture>
+</a>
 <small class="event-detail-note">※所定人数がそろい次第スタートします。</small>
 </div>
 </details>
@@ -392,7 +402,8 @@
 <span>LIVE COMMENTARY</span>
 </div>
 </article>
-<article class="guest-card guest-2">
+<!-- ゲスト公開時：下のdata-guest-original要素からhiddenを外し、直後のguest-coming-soon要素を削除 -->
+<article class="guest-card guest-2" data-guest-original="batsulog" hidden>
 <div class="guest-photo">
 <img src="assets/guest-batsulog.jpg" alt="バツローグ"/>
 </div>
@@ -400,6 +411,13 @@
 <p>解説</p>
 <h3>バツローグ</h3>
 <span>第6期ポケカ四天王</span>
+</div>
+</article>
+<article class="guest-card guest-2 guest-coming-soon" aria-label="ゲスト近日公開">
+<div class="guest-coming-mark">
+<span>GUEST</span>
+<b>COMING<br/>SOON</b>
+<small>出演者情報は順次公開</small>
 </div>
 </article>
 <article class="guest-card guest-3">
@@ -412,7 +430,8 @@
 <span>アドバンテージ</span>
 </div>
 </article>
-<article class="guest-card guest-4">
+<!-- ゲスト公開時：下のdata-guest-original要素からhiddenを外し、直後のguest-coming-soon要素を削除 -->
+<article class="guest-card guest-4" data-guest-original="fujita" hidden>
 <div class="guest-photo">
 <img src="assets/guest-fujita.png" alt="フジタハルト"/>
 </div>
@@ -422,7 +441,15 @@
 <span>CL2025東京 優勝</span>
 </div>
 </article>
-<article class="guest-card guest-5">
+<article class="guest-card guest-4 guest-coming-soon" aria-label="ゲスト近日公開">
+<div class="guest-coming-mark">
+<span>GUEST</span>
+<b>COMING<br/>SOON</b>
+<small>出演者情報は順次公開</small>
+</div>
+</article>
+<!-- ゲスト公開時：下のdata-guest-original要素からhiddenを外し、直後のguest-coming-soon要素を削除 -->
+<article class="guest-card guest-5" data-guest-original="shiokawa" hidden>
 <div class="guest-photo">
 <img src="assets/guest-shiokawa.jpg" alt="シオカワ セイノスケ"/>
 </div>
@@ -430,6 +457,13 @@
 <p>招待選手</p>
 <h3>シオカワ セイノスケ</h3>
 <span>CL2026愛知May 優勝</span>
+</div>
+</article>
+<article class="guest-card guest-5 guest-coming-soon" aria-label="ゲスト近日公開">
+<div class="guest-coming-mark">
+<span>GUEST</span>
+<b>COMING<br/>SOON</b>
+<small>出演者情報は順次公開</small>
 </div>
 </article>
 </div>
@@ -522,11 +556,15 @@
 <h2>このイベントを<br/>支えるパートナー。</h2>
 <div class="kadoraba-brand">
 <span>MAIN SPONSOR</span>
+<a class="sponsor-link sponsor-link-main" href="https://kadoraba.com/" target="_blank" rel="noreferrer" aria-label="カドラバ公式サイトを開く">
 <img src="assets/sponsor-kadoraba.png" alt="カドラバ"/>
+</a>
 </div>
 <div class="support-sponsors">
 <div>
+<a class="sponsor-link" href="https://www.fumotcg.com/" target="_blank" rel="noreferrer" aria-label="ふもっふトレカ公式サイトを開く">
 <img src="assets/sponsor-fumo.png" alt="ふもっふトレカ"/>
+</a>
 </div>
 <div>
 <img class="coming-soon-image" src="assets/sponsor-coming-01.webp" alt="新規スポンサー近日公開" loading="lazy" decoding="async"/>

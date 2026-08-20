@@ -194,6 +194,19 @@ button, summary { font: inherit; }
 .event-detail-list li { display: grid; grid-template-columns: 110px 1fr; border-bottom: 1px solid #d8d4ca; font-size: 12px; line-height: 1.6; }
 .event-detail-list li b,.event-detail-list li span { padding: 9px 10px; }
 .event-detail-list li b { background: #f0ede5; font-weight: 900; }
+.factory-special-prize { width: max-content; max-width: 100%; display: flex; align-items: center; gap: 7px; margin-top: 8px; color: var(--ink); font-size: 13px; font-weight: 900; line-height: 1.3; }
+.factory-special-prize small { flex: 0 0 auto; padding: 2px 5px; border: 1px solid #a78500; color: #806700; font-size: 9px; font-weight: 900; letter-spacing: .08em; line-height: 1.2; }
+.event-sponsor-promo { display: block; margin-top: 22px; overflow: hidden; border: 1px solid #d5d2ca; color: var(--ink); background: #f4f4f2; text-decoration: none; transition: border-color .2s,transform .2s; }
+.event-sponsor-promo:hover { border-color: #908d86; transform: translateY(-1px); }
+.event-sponsor-promo:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+.event-sponsor-promo-head { min-height: 54px; display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 10px 13px; border-bottom: 1px solid #d5d2ca; }
+.event-sponsor-promo-head > span:first-child { display: flex; align-items: center; gap: 12px; }
+.event-sponsor-promo-head small { color: #77736c; font-family: "Barlow Condensed",sans-serif; font-size: 9px; font-weight: 900; letter-spacing: .12em; }
+.event-sponsor-promo-head b { font-size: 12px; font-weight: 900; }
+.event-sponsor-promo-action { flex: 0 0 auto; display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 900; }
+.event-sponsor-promo-action::after { width: 7px; height: 7px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; content: ""; transform: rotate(45deg); }
+.event-sponsor-promo picture,.event-sponsor-promo img { width: 100%; display: block; }
+.event-sponsor-promo img { height: auto; }
 .event-detail-bullets { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .event-detail-bullets li { position: relative; padding-left: 17px; font-size: 12px; font-weight: 700; line-height: 1.7; }
 .event-detail-bullets li::before { width: 6px; height: 6px; position: absolute; top: .65em; left: 0; background: var(--red); content: ""; transform: rotate(45deg); }
@@ -221,6 +234,14 @@ button, summary { font: inherit; }
 .guest-info p { width: max-content; margin: 0 0 9px; padding: 4px 8px; color: var(--ink); background: var(--yellow); font-size: 11px; font-weight: 900; }
 .guest-info h3 { margin: 0; font-size: clamp(24px,2.7vw,38px); letter-spacing: -.04em; }
 .guest-info span { display: block; margin-top: 6px; color: #bbb; font-family: "Barlow Condensed"; font-size: 13px; font-weight: 700; letter-spacing: .08em; }
+.guest-card[hidden] { display: none !important; }
+.guest-coming-soon { display: grid; place-items: center; isolation: isolate; background: #131315; }
+.guest-coming-soon::before { position: absolute; z-index: -2; inset: 0; opacity: .34; background: repeating-linear-gradient(135deg,transparent 0 18px,rgba(255,255,255,.045) 18px 20px),radial-gradient(circle at 82% 16%,rgba(255,213,0,.26),transparent 31%); content: ""; }
+.guest-coming-soon::after { position: absolute; z-index: -1; inset: 14px; border: 1px solid rgba(255,255,255,.12); content: ""; }
+.guest-coming-mark { width: calc(100% - 56px); display: flex; align-items: flex-start; flex-direction: column; }
+.guest-coming-mark > span { margin-bottom: 16px; padding: 4px 8px; color: var(--ink); background: var(--yellow); font-family: "Barlow Condensed"; font-size: 11px; font-weight: 900; letter-spacing: .12em; }
+.guest-coming-mark > b { font-family: "Barlow Condensed"; font-size: clamp(48px,6vw,86px); line-height: .78; letter-spacing: -.045em; }
+.guest-coming-mark > small { margin-top: 22px; color: #a9a9ad; font-size: 11px; font-weight: 800; letter-spacing: .08em; }
 
 .schedule-heading { margin-bottom: 55px; }
 .timeline { border-top: 2px solid var(--ink); }
@@ -265,7 +286,12 @@ button, summary { font: inherit; }
 .sponsors > h2 { margin: 0 0 70px; font-size: clamp(55px,6vw,90px); line-height: 1.05; letter-spacing: -.065em; }
 .kadoraba-brand { min-height: 190px; position: relative; display: grid; place-items: center; background: var(--yellow); }
 .kadoraba-brand > span { position: absolute; top: 18px; left: 20px; color: var(--ink); font-family: "Barlow Condensed"; font-size: 12px; font-weight: 900; letter-spacing: .15em; }
-.kadoraba-brand > img { width: min(560px,72%); height: auto; object-fit: contain; }
+.sponsor-link { display: grid; place-items: center; text-decoration: none; }
+.sponsor-link-main { width: min(560px,72%); }
+.sponsor-link-main img { width: 100%; height: auto; object-fit: contain; }
+.sponsor-link img { transition: transform .2s ease,filter .2s ease; }
+.sponsor-link:hover img { transform: scale(1.025); filter: brightness(1.04); }
+.sponsor-link:focus-visible { outline: 3px solid var(--red); outline-offset: 5px; }
 .kadoraba-campaign { display: grid; grid-template-columns: minmax(0,.86fr) minmax(460px,1.14fr); min-height: 590px; color: var(--ink); background: var(--yellow); }
 .kadoraba-copy { display: flex; flex-direction: column; justify-content: center; padding: 70px 5vw; }
 .kadoraba-copy > p { margin: 0 0 22px; font-family: "Barlow Condensed"; font-size: 13px; font-weight: 900; letter-spacing: .18em; }
@@ -293,6 +319,7 @@ button, summary { font: inherit; }
 .support-sponsors { display: grid; grid-template-columns: repeat(3,1fr); margin-top: 16px; gap: 16px; }
 .support-sponsors.support-single { grid-template-columns: minmax(220px,500px); justify-content: center; }
 .support-sponsors div { min-height: 220px; display: grid; place-items: center; padding: 28px; background: #fff; }
+.support-sponsors .sponsor-link { width: 100%; height: 100%; }
 .support-sponsors img { width: min(100%,300px); height: 130px; object-fit: contain; }
 .support-sponsors img.coming-soon-image { width: min(100%,400px); height: auto; aspect-ratio: 2/1; object-fit: cover; }
 
@@ -418,6 +445,11 @@ footer small { justify-self: end; }
   .event-detail-body { padding: 18px 14px; }
   .event-detail-list li { grid-template-columns: 84px 1fr; }
   .event-detail-list li b,.event-detail-list li span { padding: 8px; }
+  .event-sponsor-promo { margin-top: 18px; }
+  .event-sponsor-promo-head { min-height: 0; align-items: flex-start; flex-direction: column; gap: 7px; padding: 10px; }
+  .event-sponsor-promo-head > span:first-child { align-items: flex-start; flex-direction: column; gap: 3px; }
+  .event-sponsor-promo-head b { font-size: 11px; }
+  .event-sponsor-promo-action { align-self: flex-end; }
   .event-ticket-note { align-items: flex-start; flex-direction: column; gap: 5px; padding: 15px; }
   .guest-heading h2 { font-size: 62px; }
   .guest-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
@@ -443,7 +475,7 @@ footer small { justify-self: end; }
   .venue-map-detail > div { padding: 14px; }
   .sponsors > h2 { font-size: 51px; }
   .kadoraba-brand { min-height: 145px; }
-  .kadoraba-brand > img { width: 82%; height: auto; }
+  .sponsor-link-main { width: 82%; }
   .kadoraba-campaign { grid-template-columns: 1fr; min-height: 0; }
   .kadoraba-copy { padding: 48px 22px 42px; }
   .kadoraba-copy h3 { font-size: 47px; }
