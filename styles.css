@@ -70,9 +70,9 @@ button, summary { font: inherit; }
 }
 .text-link { display: inline-flex; align-items: center; gap: 18px; padding-bottom: 8px; border-bottom: 1px solid currentColor; font-size: 12px; font-weight: 700; letter-spacing: .04em; }
 .hero-date-block { position: absolute; z-index: 4; top: 126px; right: max(5vw,48px); width: 192px; padding: 18px 20px 22px; color: var(--ink); background: var(--yellow); clip-path: polygon(16px 0,100% 0,100% calc(100% - 16px),calc(100% - 16px) 100%,0 100%,0 16px); }
-.hero-date-block p { margin: 0; font-family: "Barlow Condensed"; font-size: 13px; font-weight: 900; letter-spacing: .15em; }
-.hero-date-block strong { display: block; margin: -8px 0 -10px; font-family: "Barlow Condensed"; font-size: 104px; line-height: 1; letter-spacing: -.05em; }
-.hero-date-block span { display: block; font-family: "Barlow Condensed"; font-size: 15px; font-weight: 800; line-height: 1.15; letter-spacing: .1em; }
+.hero-date-block p { margin: 0; font-size: 13px; font-weight: 900; line-height: 1.2; letter-spacing: .08em; }
+.hero-date-block strong { display: block; margin: 6px 0 10px; font-family: "Barlow Condensed"; font-size: 104px; line-height: .78; letter-spacing: -.05em; }
+.hero-date-block span { display: block; font-size: 15px; font-weight: 900; line-height: 1; letter-spacing: .12em; }
 .hero-info-rail { position: absolute; z-index: 5; right: 0; bottom: 0; left: 0; min-height: 118px; display: grid; grid-template-columns: 1fr 1fr .65fr; padding-left: max(6vw,54px); background: rgba(9,9,10,.95); border-top: 1px solid rgba(255,255,255,.25); }
 .hero-info-rail div { display: flex; flex-direction: column; justify-content: center; gap: 7px; padding: 20px 36px; border-right: 1px solid rgba(255,255,255,.17); }
 .hero-info-rail small { font-family: "Barlow Condensed"; color: #999; font-size: 11px; font-weight: 800; letter-spacing: .19em; }
@@ -364,8 +364,8 @@ footer small { justify-self: end; }
   .hero-actions .text-link { width: max-content; }
   .hero-date-block { top: 92px; right: 17px; width: 116px; padding: 13px 14px 16px; }
   .hero-date-block p { font-size: 10px; }
-  .hero-date-block strong { font-size: 62px; }
-  .hero-date-block span { font-size: 11px; }
+  .hero-date-block strong { margin: 5px 0 9px; font-size: 62px; line-height: .8; }
+  .hero-date-block span { font-size: 12px; }
   .hero-info-rail { grid-template-columns: 1fr 1fr; padding-left: 0; }
   .hero-info-rail div { padding: 15px; }
   .hero-info-rail div:first-child { grid-column: 1/-1; }
