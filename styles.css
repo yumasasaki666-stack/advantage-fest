@@ -172,7 +172,9 @@ button, summary { font: inherit; }
 .event-card-copy { min-width: 0; display: flex; flex-direction: column; justify-content: center; padding: 30px 5vw; }
 .event-card-copy > p { display: flex; align-items: center; gap: 16px; margin: 0 0 15px; color: #77746e; font-size: 12px; font-weight: 700; }
 .event-card-copy > p span { padding: 4px 8px; color: #fff; background: var(--red); font-family: "Barlow Condensed"; font-weight: 900; letter-spacing: .1em; }
-.event-presenter { width: max-content; display: inline-flex; margin: 0 0 9px; padding: 4px 8px; color: var(--ink); background: var(--yellow); font-size: 11px; font-weight: 900; letter-spacing: .04em; }
+.event-presenter { width: max-content; max-width: 100%; display: inline-flex; align-items: center; gap: 7px; margin: 0 0 9px; padding: 5px 8px; color: var(--ink); background: #fff; font-size: 10px; font-weight: 900; letter-spacing: .04em; line-height: 1; }
+.event-presenter img { display: block; width: clamp(105px,12vw,132px); height: 22px; object-fit: contain; }
+.event-presenter b { flex: 0 0 auto; font: inherit; }
 .event-card-copy h3 { margin: 0 0 16px; font-size: clamp(27px,3vw,44px); letter-spacing: -.04em; }
 .event-card-copy > div { max-width: 620px; color: #65635e; font-size: 13px; line-height: 1.8; }
 .event-card:hover .event-card-copy > div { color: #aaa; }
