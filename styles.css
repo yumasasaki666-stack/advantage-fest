@@ -324,6 +324,7 @@ button, summary { font: inherit; }
 .support-sponsors div { min-height: 220px; display: grid; place-items: center; padding: 28px; background: #fff; }
 .support-sponsors .sponsor-link { width: 100%; height: 100%; }
 .support-sponsors img { width: min(100%,300px); height: 130px; object-fit: contain; }
+.support-sponsors img.sponsor-logo-fumo { width: 80%; height: auto; max-height: 150px; }
 .support-sponsors img.coming-soon-image { width: min(100%,400px); height: auto; aspect-ratio: 2/1; object-fit: cover; }
 
 .faq-layout { display: grid; grid-template-columns: .7fr 1.3fr; gap: 9vw; }
@@ -491,6 +492,7 @@ footer small { justify-self: end; }
   .support-sponsors { grid-template-columns: 1fr; }
   .support-sponsors div { min-height: 160px; }
   .support-sponsors img { height: 95px; }
+  .support-sponsors img.sponsor-logo-fumo { width: 80%; height: auto; max-height: 110px; }
   .faq-layout h2 { font-size: 62px; }
   .faq-list summary { grid-template-columns: 34px 1fr 20px; gap: 10px; }
   .faq-list summary span { font-size: 13px; }
