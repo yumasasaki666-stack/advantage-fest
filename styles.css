@@ -228,7 +228,7 @@ button, summary { font: inherit; }
 .guest-grid { display: grid; grid-template-columns: repeat(12,1fr); gap: 16px; }
 .guest-card { position: relative; min-height: 510px; overflow: hidden; background: #18181a; }
 .guest-1,.guest-2,.guest-3 { grid-column: span 4; }
-.guest-4,.guest-5 { grid-column: span 6; min-height: 430px; }
+.guest-4,.guest-5,.guest-6 { grid-column: span 4; min-height: 430px; }
 .guest-photo { position: absolute; inset: 0; }
 .guest-photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg,rgba(0,0,0,.94),transparent 55%); }
 .guest-photo img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.75); transition: transform .5s,filter .5s; }
@@ -458,7 +458,7 @@ footer small { justify-self: end; }
   .event-ticket-note { align-items: flex-start; flex-direction: column; gap: 5px; padding: 15px; }
   .guest-heading h2 { font-size: 62px; }
   .guest-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
-  .guest-1,.guest-2,.guest-3,.guest-4,.guest-5 { grid-column: auto; min-height: 360px; }
+  .guest-1,.guest-2,.guest-3,.guest-4,.guest-5,.guest-6 { grid-column: auto; min-height: 360px; }
   .guest-1 { grid-column: 1/-1; min-height: 460px; }
   .guest-photo img { object-position: center top; }
   .guest-info { right: 14px; bottom: 14px; left: 14px; }
