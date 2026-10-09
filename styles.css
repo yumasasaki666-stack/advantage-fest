@@ -540,3 +540,6 @@ footer small { justify-self: end; }
   .prize-row-choice span { font-size: 11px; }
   .prize-row-choice > div:last-child > strong { font-size: 22px; }
 }
+
+/* Toreca camp: display the supplied horizontal logo without its outer padding. */
+.support-sponsors img.sponsor-logo-torecacamp { width: min(100%,300px); height: auto; aspect-ratio: 5 / 1; object-fit: cover; object-position: center 48%; }
